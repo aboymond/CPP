@@ -23,9 +23,31 @@ Phonebook::Phonebook(void){
 	index = 0;
 	std::cout << "constructeur !" << std::endl;
 }
+
 Phonebook::~Phonebook(void)
 {
 	std::cout << "destructeur !" << std::endl;
 }
 
+char	*Phonebook::cut_name(std::string str){
+	char	*name;
+	int		i;
 
+	i = 0;
+	name = new char[9];
+	while (i < 9){
+		if (str[i] == '\0'){
+			while (i < 9){
+				name[i] = ' ';
+				i++;
+			}
+			name[i] = '\0';
+			return (name);
+		}
+
+		name[i] = str[i];
+		i++;
+	}
+	name[i] = '.';
+	return (name);
+}

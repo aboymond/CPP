@@ -21,6 +21,7 @@ class Contact{
 		void	Setnickname(std::string nickname);
 		void	Setphone_number(std::string phone_number);
 		void	Setdarkest_secret(std::string darkest_secret);
+		
 		~Contact(void);
 };
 

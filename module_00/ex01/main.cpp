@@ -24,19 +24,21 @@ int	main()
 		std::cin >> info[3];
 		std::cout << "Entrez votre Secret :" << std::endl;
 		std::cin >> info[4];
-
+		test.add_contact(info);
 		}
 
 		else if (cmd == "SEARCH"){
-			std::cout << "_____________________________________________" << std::endl;
-			std::cout << "|" << test.getindex();
-			for (int i = 0; i < 8; i++)
-				std::cout << " ";
-			std::cout << "|";
-			for (int i = 0; i < 9; i++)
-				std::cout << ;
-			std::cout << "|          |          |          |          |" << std::endl;
-			std::cout << "---------------------------------------------" << std::endl;
+			//for (info != NULL){
+
+				std::cout << "\033[1;31m---------------------------------------------------\033[0m" << std::endl;
+				std::cout << "\033[1;31m|\033[0m" << "   " << test.getindex();
+				for(int i = 0; i < 5; i++)
+					std::cout << " ";
+				std::cout << "\033[1;31m|\033[0m";
+				for (int i = 0; i < 4; i++)
+					std::cout << test.cut_name(info[i]) << "\033[1;31m|\033[0m";
+				std::cout << "\n" << "\033[1;31m---------------------------------------------------\033[0m" << std::endl;
+			//}
 		}
 
 		else if (cmd == "EXIT"){

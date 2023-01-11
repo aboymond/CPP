@@ -15,6 +15,7 @@ class Phonebook {
 		Phonebook(void);
 		void	add_contact(std::string list[5]);
 		int		getindex() const;
+		char	*cut_name(std::string str);
 		~Phonebook(void);
 };
 
