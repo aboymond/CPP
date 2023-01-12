@@ -4,6 +4,7 @@
 
 #include "contact.hpp"
 #include <iostream>
+#include <iomanip>
 
 class Phonebook {
 
@@ -15,7 +16,9 @@ class Phonebook {
 		Phonebook(void);
 		void	add_contact(std::string list[5]);
 		int		getindex() const;
-		char	*cut_name(std::string str);
+		void	print_contact();
+		void	print_tab_contact(int index);
+
 		~Phonebook(void);
 };
 

@@ -4,11 +4,12 @@
 
 int	main()
 {
-	Phonebook	test;
+	Phonebook	cont;
 	std::string	cmd;
+	int			index;
 	std::string	info[5];
 
-	while (42){
+	while (1){
 		std::cout << "Faites un choix 'ADD', 'SEARCH', 'EXIT' :" << std::endl;
 		std::cin >> cmd;
 
@@ -18,27 +19,24 @@ int	main()
 		std::cin >> info[0];
 		std::cout << "Entrez votre Nom :" << std::endl;
 		std::cin >> info[1];
-		std::cout << "Entrez votre Numero :" << std::endl;
-		std::cin >> info[2];
 		std::cout << "Entrez votre nickname :" << std::endl;
+		std::cin >> info[2];
+		std::cout << "Entrez votre Numero :" << std::endl;
 		std::cin >> info[3];
 		std::cout << "Entrez votre Secret :" << std::endl;
 		std::cin >> info[4];
-		test.add_contact(info);
+		cont.add_contact(info);
 		}
 
 		else if (cmd == "SEARCH"){
 			//for (info != NULL){
-
-				std::cout << "\033[1;31m---------------------------------------------------\033[0m" << std::endl;
-				std::cout << "\033[1;31m|\033[0m" << "   " << test.getindex();
-				for(int i = 0; i < 5; i++)
-					std::cout << " ";
-				std::cout << "\033[1;31m|\033[0m";
-				for (int i = 0; i < 4; i++)
-					std::cout << test.cut_name(info[i]) << "\033[1;31m|\033[0m";
-				std::cout << "\n" << "\033[1;31m---------------------------------------------------\033[0m" << std::endl;
-			//}
+			cont.print_contact();
+			std::cout << "Selectionnez un index : " << std::endl;
+			std::cin >> index;
+			if (std::isalnum(index) || index > (cont.getindex() - 1) || index < 0)
+				std::cout << "\033[1;31mErreur :\n\tMauvais index !\033[0m\n" << std::endl;
+			else
+				cont.print_tab_contact(index);
 		}
 
 		else if (cmd == "EXIT"){

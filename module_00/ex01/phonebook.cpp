@@ -3,16 +3,15 @@
 #include "contact.hpp"
 
 void	Phonebook::add_contact(std::string list[5]){
-	
-	int	i = this->index;
-
-	this->contact[i].Setfirst_name(list[0]);
-	this->contact[i].Setlast_name(list[1]);
-	this->contact[i].Setnickname(list[2]);
-	this->contact[i].Setphone_number(list[3]);
-	this->contact[i].Setdarkest_secret(list[4]);
-	if (i != 8)
-		this->index = i++;
+	if (this->index == 8)
+		this->index = 0;
+	this->contact[this->index].Setfirst_name(list[0]);
+	this->contact[this->index].Setlast_name(list[1]);
+	this->contact[this->index].Setnickname(list[2]);
+	this->contact[this->index].Setphone_number(list[3]);
+	this->contact[this->index].Setdarkest_secret(list[4]);
+	if (this->index < 8)
+		this->index++;
 }
 
 int		Phonebook::getindex() const{
@@ -21,7 +20,7 @@ int		Phonebook::getindex() const{
 
 Phonebook::Phonebook(void){
 	index = 0;
-	std::cout << "constructeur !" << std::endl;
+	//std::cout << "constructeur !" << std::endl;
 }
 
 Phonebook::~Phonebook(void)
@@ -29,25 +28,64 @@ Phonebook::~Phonebook(void)
 	std::cout << "destructeur !" << std::endl;
 }
 
-char	*Phonebook::cut_name(std::string str){
-	char	*name;
-	int		i;
+void	Phonebook::print_contact(){
 
-	i = 0;
-	name = new char[9];
-	while (i < 9){
-		if (str[i] == '\0'){
-			while (i < 9){
-				name[i] = ' ';
-				i++;
-			}
-			name[i] = '\0';
-			return (name);
+	Phonebook	cont;
+	std::string	str;
+
+	std::cout << this->index << std::endl;
+	std::cout << "\033[1;31m---------------------------------------------\033[0m" << std::endl;
+	for (int i = 0; i < this->index; i++){
+
+		std::cout << "\033[1;31m|\033[0m";
+		std::cout << std::setfill(' ') << std::setw(10);
+		std::cout << i;
+		std::cout << "\033[1;31m|\033[0m";
+
+		str = this->contact[i].Getfirst_name();
+		if (str.length() > 9){
+			str = str.substr(0, 9).append(".");
+			std::cout << str;
 		}
+		else{
 
-		name[i] = str[i];
-		i++;
+			std::cout << std::setfill(' ') << std::setw(10);
+			std::cout << str;
+		}
+		std::cout << "\033[1;31m|\033[0m";
+
+		str = this->contact[i].Getlast_name();
+		if (str.length() > 9){
+			str = str.substr(0, 9).append(".");
+			std::cout << str;
+		}
+		else{
+
+			std::cout << std::setfill(' ') << std::setw(10);
+			std::cout << str;
+		}
+		std::cout << "\033[1;31m|\033[0m";
+
+		str = this->contact[i].Getnickname();
+		if (str.length() > 9){
+			str = str.substr(0, 9).append(".");
+			std::cout << str;
+		}
+		else{
+
+			std::cout << std::setfill(' ') << std::setw(10);
+			std::cout << str;
+		}
+		std::cout << "\033[1;31m|\033[0m";
+		std::cout << "\n" << "\033[1;31m---------------------------------------------\033[0m" << std::endl;
 	}
-	name[i] = '.';
-	return (name);
+}
+
+void	Phonebook::print_tab_contact(int index){
+
+	std::cout << "First name : " << this->contact[index].Getfirst_name() << std::endl;
+	std::cout << "Last name : " << this->contact[index].Getlast_name() << std::endl;
+	std::cout << "Nickname : " << this->contact[index].Getnickname() << std::endl;
+	std::cout << "Phone number : " << this->contact[index].Getphone_number() << std::endl;
+	std::cout << "Darkest secret : " << this->contact[index].Getdarkest_secret() << std::endl;
 }
