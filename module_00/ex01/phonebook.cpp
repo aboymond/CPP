@@ -28,12 +28,17 @@ Phonebook::~Phonebook(void)
 	std::cout << "destructeur !" << std::endl;
 }
 
-void	Phonebook::print_contact(){
+int		Phonebook::print_contact(){
 
 	Phonebook	cont;
 	std::string	str;
 
+	if (this->index == 0){
+		std::cout << "Pas de contact" << std::endl;
+		return (1);
+	}
 	std::cout << this->index << std::endl;
+
 	std::cout << "\033[1;31m---------------------------------------------\033[0m" << std::endl;
 	for (int i = 0; i < this->index; i++){
 
@@ -79,10 +84,13 @@ void	Phonebook::print_contact(){
 		std::cout << "\033[1;31m|\033[0m";
 		std::cout << "\n" << "\033[1;31m---------------------------------------------\033[0m" << std::endl;
 	}
+	return (0);
 }
 
 void	Phonebook::print_tab_contact(int index){
 
+	if (index != this->index - 1)
+		return ;
 	std::cout << "First name : " << this->contact[index].Getfirst_name() << std::endl;
 	std::cout << "Last name : " << this->contact[index].Getlast_name() << std::endl;
 	std::cout << "Nickname : " << this->contact[index].Getnickname() << std::endl;

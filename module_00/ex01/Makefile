@@ -78,7 +78,6 @@ $(NAME) :	${OBJS}
 			@$(END_COMP)
 
 l :			${OBJS}
-			@${LIBFT_MLX} all
 			${CC} ${L} ${OBJS} -o ${NAME}
 			@$(END_COMP)
 
