@@ -5,6 +5,7 @@
 void	Phonebook::add_contact(std::string list[5]){
 	if (this->index == 8)
 		this->index = 0;
+	std::cout << "Mon index" << this->index << std::endl;
 	this->contact[this->index].Setfirst_name(list[0]);
 	this->contact[this->index].Setlast_name(list[1]);
 	this->contact[this->index].Setnickname(list[2]);
@@ -12,6 +13,8 @@ void	Phonebook::add_contact(std::string list[5]){
 	this->contact[this->index].Setdarkest_secret(list[4]);
 	if (this->index < 8)
 		this->index++;
+	if (this->compt < 8)
+		this->compt++;
 }
 
 int		Phonebook::getindex() const{
@@ -19,7 +22,8 @@ int		Phonebook::getindex() const{
 }
 
 Phonebook::Phonebook(void){
-	index = 0;
+	this->index = 0;
+	this->compt = 0;
 	//std::cout << "constructeur !" << std::endl;
 }
 
@@ -33,14 +37,14 @@ int		Phonebook::print_contact(){
 	Phonebook	cont;
 	std::string	str;
 
-	if (this->index == 0){
+	if (this->compt == 0){
 		std::cout << "Pas de contact" << std::endl;
 		return (1);
 	}
-	std::cout << this->index << std::endl;
+	
 
 	std::cout << "\033[1;31m---------------------------------------------\033[0m" << std::endl;
-	for (int i = 0; i < this->index; i++){
+	for (int i = 0; i < this->compt; i++){
 
 		std::cout << "\033[1;31m|\033[0m";
 		std::cout << std::setfill(' ') << std::setw(10);
@@ -89,8 +93,6 @@ int		Phonebook::print_contact(){
 
 void	Phonebook::print_tab_contact(int index){
 
-	if (index != this->index - 1)
-		return ;
 	std::cout << "First name : " << this->contact[index].Getfirst_name() << std::endl;
 	std::cout << "Last name : " << this->contact[index].Getlast_name() << std::endl;
 	std::cout << "Nickname : " << this->contact[index].Getnickname() << std::endl;
