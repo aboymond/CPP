@@ -14,7 +14,7 @@ int	main()
 		std::cout << "Faites un choix 'ADD', 'SEARCH', 'EXIT' :" << std::endl;
 		std::cin >> cmd;
 		
-		if (cmd == "ADD"){
+		if (cmd == "ADD" || cmd.length() == 3){
 		std::cout << "Entrez vos informations :" << std::endl;
 		std::cin.ignore();
 		std::cout << "Entrez votre Prenom :" << std::endl;
