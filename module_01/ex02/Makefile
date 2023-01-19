@@ -1,7 +1,7 @@
 
 #***** Name *****#
 
-NAME			=		BraiiiiiiinnnzzzZ
+NAME			=		Bonjour
 
 #***** Sources / Objs *****#
 
