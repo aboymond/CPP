@@ -8,3 +8,11 @@ const std::string		&Weapon::getType(void) const{
 void			Weapon::setType(std::string w_name){
 	this->_type = w_name;
 }
+
+Weapon::Weapon(std::string type) : _type(type)
+{
+}
+
+Weapon::~Weapon()
+{
+}
