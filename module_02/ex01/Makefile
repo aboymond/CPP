@@ -1,11 +1,11 @@
 
 #***** Name *****#
 
-NAME			=		Harl
+NAME			=		1er_canon
 
 #***** Sources / Objs *****#
 
-SRC				=		main.cpp Harl.cpp
+SRC				=		main.cpp Fixed.cpp
 
 OBJS			=		$(SRC:.cpp=.o)
 
