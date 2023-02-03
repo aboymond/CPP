@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <cmath>
 
 class Fixed
 {
@@ -13,20 +14,15 @@ class Fixed
 		int const static nb_bits = 8;
 	public:
 		Fixed(void);
+		Fixed(int nb);
+		Fixed(float nb);
 		Fixed(const Fixed &b);
 		~Fixed();
 		Fixed & operator=( Fixed const &rhs );
+		float	toFloat(void) const;
+		int		toint(void) const;
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
 };
-/*
-//Default
-Fixed a;
-//Constructeur de recopie
-Fixed b(a);
-//Surcharge opérateur =
-Fixed c;
-c = a;
-*/
 
 #endif

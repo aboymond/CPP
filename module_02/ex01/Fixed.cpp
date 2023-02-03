@@ -5,6 +5,15 @@ Fixed::Fixed() {
 	this->nb = 42;
 	std::cout << "Default Constructor called" << std::endl;
 }
+
+Fixed::Fixed(int nb) {
+	std::cout << "Int Constructor called" << std::endl;
+}
+
+Fixed::Fixed(float nb) {
+	std::cout << "Float Constructor called" << std::endl;
+}
+
 Fixed::~Fixed() {
 	std::cout << "Destructeur called" << std::endl;
 }
@@ -27,4 +36,12 @@ Fixed &	Fixed::operator=(Fixed const &rhs){
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->nb = rhs.getRawBits();
 	return (*this);
+}
+
+float	Fixed::toFloat(void) const{
+
+}
+
+int		Fixed::toint(void) const{
+
 }
