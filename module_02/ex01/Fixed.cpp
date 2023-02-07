@@ -39,7 +39,7 @@ Fixed &	Fixed::operator=(Fixed const &rhs){
 }
 
 float	Fixed::toFloat(void) const{
-
+	
 }
 
 int		Fixed::toint(void) const{
