@@ -2,23 +2,23 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() {
+    std::cout << "Default constructor ClapTrap called" << std::endl;
     this->_Name = "JohnDoe";
     this->_Hit = 10;
     this->_Energy = 10;
     this->_Attack_Damage = 0;
-    std::cout << "Default constructor ClapTrap called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string Name) {
+    std::cout << "Name constructor ClapTrap called" << std::endl;
     this->_Name = Name;
     this->_Hit = 10;
     this->_Energy = 10;
     this->_Attack_Damage = 0;
-    std::cout << "Name constructor ClapTrap called" << std::endl;
 }
 
 ClapTrap::~ClapTrap() {
-    std::cout << "Destructor ClapTrap called" << std::endl;
+	std::cout << "Destructor ClapTrap called" << std::endl;
 }
 
 void    ClapTrap::attack(const std::string& target){
@@ -55,11 +55,11 @@ void    ClapTrap::beRepaired(unsigned int amount){
             std::cout << "\033[0;32m-- The supreme duck god restored " << amount << " of life points !\033[0m" << std::endl;
             this->_Hit += amount;
             this->_Energy--;
-            std::cout << "You now have " << this->_Hit << " life points !" << std::endl;
+            std::cout << this->_Name << " now have " << this->_Hit << " life points !" << std::endl;
         }
     }
     else {
-        std::cout << "You don't have enough energy, you have " << this->_Energy << " points left !" << std::endl;
+        std::cout << this->_Name << " don't have enough energy, you have " << this->_Energy << " points left !" << std::endl;
     }
 }
 
