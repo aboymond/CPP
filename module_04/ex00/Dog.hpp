@@ -4,7 +4,7 @@
 
 #include "Animal.hpp"
 
-class Dog {
+class Dog : public Animal{
 private:
 
 protected:
@@ -13,8 +13,9 @@ public:
 	Dog();
 	Dog(Dog &cpy);
 	Dog &operator=(Dog const &rhs);
-	virtual void	makeSound();
 	~Dog();
+
+	virtual void	makeSound();
 };
 
 

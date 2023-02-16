@@ -21,7 +21,7 @@ public:
 	~Animal();
 
 	virtual void	makeSound();
-	std::string 	getType();
+	std::string 	getType() const;
 };
 
 
