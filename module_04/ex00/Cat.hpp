@@ -3,7 +3,6 @@
 #define CAT_HPP
 
 #include "Animal.hpp"
-#include "Brain.hpp"
 
 class Cat : public Animal{
 private:
@@ -16,7 +15,7 @@ public:
 	Cat &operator=(Cat const &rhs);
 	~Cat();
 	
-	virtual void	makeSound();
+	virtual void	makeSound() const;
 };
 
 

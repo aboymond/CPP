@@ -17,6 +17,8 @@ public:
 	~Cat();
 	
 	virtual void	makeSound();
+	void			SetSay(std::string const say);
+	std::string 	GetSay() const;
 };
 
 

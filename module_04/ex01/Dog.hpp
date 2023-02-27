@@ -17,6 +17,8 @@ public:
 	~Dog();
 
 	virtual void	makeSound();
+	void			SetSay();
+	std::string 	GetSay() const;
 };
 
 

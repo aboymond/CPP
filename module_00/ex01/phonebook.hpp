@@ -17,6 +17,7 @@ class Phonebook {
 		Phonebook(void);
 		void	add_contact(std::string list[5]);
 		int		getindex() const;
+		int		getcompt() const;
 		int		print_contact();
 		void	print_tab_contact(int index);
 

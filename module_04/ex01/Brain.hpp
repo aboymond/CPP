@@ -8,12 +8,15 @@ private:
 
 protected:
 	std::string	_ideas[100];
+
 public:
 	Brain();
 	Brain(Brain &cpy);
 	Brain &operator=(Brain const &rhs);
 	~Brain();
-};
 
+	std::string getIdeas(int i);
+
+};
 
 #endif

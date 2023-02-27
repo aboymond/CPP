@@ -21,6 +21,10 @@ int		Phonebook::getindex() const{
 	return (this->index);
 }
 
+int		Phonebook::getcompt() const{
+	return (this->compt);
+}
+
 Phonebook::Phonebook(void){
 	this->index = 0;
 	this->compt = 0;
@@ -29,7 +33,7 @@ Phonebook::Phonebook(void){
 
 Phonebook::~Phonebook(void)
 {
-	std::cout << "destructeur !" << std::endl;
+	return;
 }
 
 int		Phonebook::print_contact(){

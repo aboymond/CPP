@@ -5,7 +5,7 @@ WrongCat::WrongCat() : WrongAnimal(){
 	this->_type = "WrongCat 🙀";
 }
 
-void	WrongCat::makeSound() {
+void	WrongCat::makeSound() const{
 	std::cout << "SHBBoooooooooaaaaGGgaaaaglllleeee ! " << std::endl;
 }
 

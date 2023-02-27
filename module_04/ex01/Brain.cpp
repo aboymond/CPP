@@ -1,7 +1,10 @@
 
 #include "Brain.hpp"
 
-Brain::Brain() {}
+Brain::Brain() {
+	std::cout << "Brain created" << std::endl;
+	_ideas[0] = "im hungry";
+}
 Brain::~Brain() {}
 
 Brain::Brain(Brain &cpy) {
@@ -14,3 +17,10 @@ Brain & Brain::operator=(const Brain &rhs) {
 	}
 	return (*this);
 }
+
+std::string	Brain::getIdeas(int i) {
+	return (this->_ideas[i]);
+}
+
+
+

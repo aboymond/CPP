@@ -40,9 +40,9 @@ int	main()
 				continue ;
 			std::cout << "Selectionnez un index : " << std::endl;
 			std::cin >> index;
-			std::cout << index << " <- index  getindex ->    " << cont.getindex() - 1 << std::endl;
-			if (std::cin.fail() || index < 0 || index > 7){
-				std::cout << "\033[1;31mErreur :\n\tIndex non valide !\033[0m\n" << std::endl;
+			//std::cout << index << " <- index  getindex ->    " << cont.getindex() - 1 << std::endl;
+			if (std::cin.fail() || index >= cont.getcompt() || index < 0){//&& index < 0 && index > 7){
+				std::cout << "\033[1;31mErreur :\n\tIndex non valide 	!\033[0m\n" << std::endl;
 				std::cin.clear();
 				std::getline(std::cin, cmd);
 				continue ;

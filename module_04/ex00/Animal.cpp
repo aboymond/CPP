@@ -1,8 +1,13 @@
 
 #include "Animal.hpp"
 
-Animal::Animal() {}
-Animal::~Animal() {}
+Animal::Animal() {
+	std::cout << "constructor animal" << std::endl;
+}
+Animal::~Animal() {
+	std::cout << "destructor animal" << std::endl;
+
+}
 
 Animal::Animal(Animal &cpy) {
 	*this = cpy;
@@ -15,7 +20,7 @@ Animal & Animal::operator=(const Animal &rhs) {
 	return (*this);
 }
 
-void	Animal::makeSound() {
+void	Animal::makeSound() const{
 	std::cout << "Animal sound" << std::endl;
 }
 
