@@ -9,18 +9,26 @@ Dog::Dog() : Animal(){
 	this->_brain = new Brain();
 }
 
+Dog::Dog (Dog const &cpy){
+	*this = cpy;
+}
+
+Dog & Dog::operator=(Dog const &rhs){
+	if (this != &rhs){
+		this->_brain = rhs._brain;
+	}
+	return (*this);
+}
+
 void	Dog::makeSound() {
 	std::cout << "Wooooouuf ! " << std::endl;
 }
 
+void	Dog::DogSay(int i){
+	std::cout << "Dog think " << _brain->getIdeas(i) << std::endl;
+}
+
 Dog::~Dog() {
 	delete this->_brain;
-	std::cout << "Destructor ! 🐶" << std::endl;
+	std::cout << "Destructor & brain deleted ! 🐶" << std::endl;
 }
-
-void	Dog::SetSay() {
-//	this->_brain->_ideas = say;
-	std::cout << "dog say" << this->_brain->getIdeas(0);
-}
-
-//std::string 	GetSay() const;

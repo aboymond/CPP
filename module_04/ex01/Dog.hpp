@@ -12,13 +12,12 @@ protected:
 
 public:
 	Dog();
-	Dog(Dog &cpy);
+	Dog(Dog const &cpy);
 	Dog &operator=(Dog const &rhs);
 	~Dog();
 
 	virtual void	makeSound();
-	void			SetSay();
-	std::string 	GetSay() const;
+	void			DogSay(int i);
 };
 
 

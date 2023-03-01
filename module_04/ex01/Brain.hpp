@@ -3,7 +3,7 @@
 
 #include "Animal.hpp"
 
-class Brain : public Animal {
+class Brain {
 private:
 
 protected:
@@ -11,7 +11,7 @@ protected:
 
 public:
 	Brain();
-	Brain(Brain &cpy);
+	Brain(Brain const &cpy);
 	Brain &operator=(Brain const &rhs);
 	~Brain();
 

@@ -12,13 +12,12 @@ protected:
 
 public:
 	Cat();
-	Cat(Cat &cpy);
+	Cat(Cat const &cpy);
 	Cat &operator=(Cat const &rhs);
 	~Cat();
 	
 	virtual void	makeSound();
-	void			SetSay(std::string const say);
-	std::string 	GetSay() const;
+	void			CatSay(int i);
 };
 
 
