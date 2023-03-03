@@ -6,8 +6,7 @@ int	main()
 {
 	Phonebook	cont;
 	std::string	cmd;
-	int			index;
-	int			valide = 0;
+	std::string	index;
 	std::string	info[5];
 
 	while (1){
@@ -40,15 +39,26 @@ int	main()
 				continue ;
 			std::cout << "Selectionnez un index : " << std::endl;
 			std::cin >> index;
-			//std::cout << index << " <- index  getindex ->    " << cont.getindex() - 1 << std::endl;
-			if (std::cin.fail() || index >= cont.getcompt() || index < 0){//&& index < 0 && index > 7){
-				std::cout << "\033[1;31mErreur :\n\tIndex non valide 	!\033[0m\n" << std::endl;
+			std::cout << "l index " << index << std::endl;
+			try {
+				int indexValue = std::stoi(index);
+				std::cout << "l index value" << indexValue << std::endl;
+				if (indexValue >= cont.getcompt() || indexValue < 0 || indexValue > 8 || index.length() > 1){
+					std::cout << "\033[1;31mErreur :\n\tIndex non valide 	!\033[0m\n" << std::endl;
+					std::cin.clear();
+					std::getline(std::cin, cmd);
+					continue ;
+				}
+				else
+					cont.print_tab_contact(indexValue);
+			}
+			catch (const std::invalid_argument& e) {
+				std::cout << "\033[1;31mErreur :\n\tL'index doit être un entier 	!\033[0m\n" << std::endl;
 				std::cin.clear();
 				std::getline(std::cin, cmd);
 				continue ;
 			}
-			else
-				cont.print_tab_contact(index);
+
 		}
 		else if (cmd == "EXIT"){
 			return (0);

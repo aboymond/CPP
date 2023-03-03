@@ -1,11 +1,11 @@
 
 #***** Name *****#
 
-NAME			=		BraiiiiiiinnnzzzZ
+NAME			=		Animal
 
 #***** Sources / Objs *****#
 
-SRC				=		main.cpp Zombie.cpp ZombieHorde.cpp
+SRC				=		main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp Brain.cpp
 
 OBJS			=		$(SRC:.cpp=.o)
 
@@ -49,7 +49,7 @@ LOGO_CPP			=		echo "$(GREEN)\t        CCCCCCCCCCCCCPPPPPPPPPPPPPPPPP   PPPPPPPPP
 #***** Flags *****#
 
 CXX				=		c++
-CFLAGS			=		-Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS			=		-Wall -Wextra -Werror -std=c++98 -g
 L				=		$(CFLAGS) -g -fsanitize=address -fno-omit-frame-pointer
 RM				=		rm -f
 
@@ -69,12 +69,12 @@ logo :
 
 
 %.o:		%.cpp
-			@$(CXX) $(CFLAGS) -g -c $< -o $@
+			@$(CXX) $(CXXFLAGS) -g -c $< -o $@
 			@$(CHARG_LINE)
 
 $(NAME) :	${OBJS}
 			@$(BS_N)
-			${CXX} ${CFLAGS} ${OBJS} -o ${NAME}
+			${CXX} ${CXXFLAGS} ${OBJS} -o ${NAME}
 			@$(END_COMP)
 
 l :			${OBJS}

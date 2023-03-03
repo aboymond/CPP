@@ -2,7 +2,9 @@
 #include "Animal.hpp"
 
 Animal::Animal() {}
-Animal::~Animal() {}
+Animal::~Animal() {
+	std::cout << "Destructor Animal" << std::endl;
+}
 
 Animal::Animal(Animal &cpy) {
 	*this = cpy;

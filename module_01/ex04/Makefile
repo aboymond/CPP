@@ -48,7 +48,7 @@ LOGO_CPP			=		echo "$(GREEN)\t        CCCCCCCCCCCCCPPPPPPPPPPPPPPPPP   PPPPPPPPP
 
 #***** Flags *****#
 
-CC				=		c++
+CXX				=		c++
 CFLAGS			=		-Wall -Wextra -Werror -std=c++98 -g
 L				=		$(CFLAGS) -g -fsanitize=address -fno-omit-frame-pointer
 RM				=		rm -f
@@ -68,17 +68,17 @@ logo :
 			@$(LOGO_CPP)
 
 
-%.o:		%.c Makefile
-			@$(CC) $(CFLAGS) -g -c $< -o $@
+%.o:		%.cpp
+			@$(CXX) $(CFLAGS) -g -c $< -o $@
 			@$(CHARG_LINE)
 
 $(NAME) :	${OBJS}
 			@$(BS_N)
-			${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+			${CXX} ${CFLAGS} ${OBJS} -o ${NAME}
 			@$(END_COMP)
 
 l :			${OBJS}
-			${CC} ${L} ${OBJS} -o ${NAME}
+			${CXX} ${L} ${OBJS} -o ${NAME}
 			@$(END_COMP)
 
 
