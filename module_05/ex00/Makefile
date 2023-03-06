@@ -50,7 +50,7 @@ LOGO_CPP			=		echo "$(GREEN)\t        CCCCCCCCCCCCCPPPPPPPPPPPPPPPPP   PPPPPPPPP
 
 CXX				=		c++
 CXXFLAGS			=		-Wall -Wextra -Werror -std=c++98 -g
-L				=		$(CFLAGS) -g -fsanitize=address -fno-omit-frame-pointer
+L				=		$(CXXFLAGS) -g -fsanitize=address -fno-omit-frame-pointer
 RM				=		rm -f
 
 #ifeq ($(shell uname), Linux)

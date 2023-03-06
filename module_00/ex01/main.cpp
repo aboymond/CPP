@@ -1,6 +1,13 @@
 
 #include "phonebook.hpp"
 #include "contact.hpp"
+#include <sstream>
+
+static int ft_stoi( std::string & s ) {
+	int i;
+	std::istringstream(s) >> i;
+	return i;
+}
 
 int	main()
 {
@@ -12,8 +19,8 @@ int	main()
 	while (1){
 		std::cout << "Faites un choix 'ADD', 'SEARCH', 'EXIT' :" << std::endl;
 		std::cin >> cmd;
-		
-		if (cmd == "ADD" || cmd.length() == 3){
+
+		if ((cmd == "ADD" || cmd == "add") && cmd.length() == 3){
 		std::cout << "Entrez vos informations :" << std::endl;
 		std::cin.ignore();
 		std::cout << "Entrez votre Prenom :" << std::endl;
@@ -33,41 +40,34 @@ int	main()
 		cont.add_contact(info);
 		}
 
-		else if (cmd == "SEARCH"){
+		else if ((cmd == "SEARCH" || cmd == "search") && cmd.length() == 6){
 
 			if (cont.print_contact() == 1)
 				continue ;
 			std::cout << "Selectionnez un index : " << std::endl;
 			std::cin >> index;
-			std::cout << "l index " << index << std::endl;
-			try {
-				int indexValue = std::stoi(index);
-				std::cout << "l index value" << indexValue << std::endl;
-				if (indexValue >= cont.getcompt() || indexValue < 0 || indexValue > 8 || index.length() > 1){
+			if (index.length() > 1)
+				std::cout << "\033[1;31mErreur :\n\tIndex non valide 	!\033[0m\n" << std::endl;
+			else{
+				int indexValue = ft_stoi(index);
+				if (!std::all_of(index.begin(), index.end(), ::isdigit)|| indexValue >= cont.getcompt() || indexValue < 0 || indexValue > 8 || index.length() > 1) {
 					std::cout << "\033[1;31mErreur :\n\tIndex non valide 	!\033[0m\n" << std::endl;
 					std::cin.clear();
 					std::getline(std::cin, cmd);
-					continue ;
+					continue;
 				}
 				else
 					cont.print_tab_contact(indexValue);
 			}
-			catch (const std::invalid_argument& e) {
-				std::cout << "\033[1;31mErreur :\n\tL'index doit être un entier 	!\033[0m\n" << std::endl;
-				std::cin.clear();
-				std::getline(std::cin, cmd);
-				continue ;
-			}
 
 		}
-		else if (cmd == "EXIT"){
+		else if ((cmd == "EXIT" || cmd == "exit") && cmd.length() == 4){
 			return (0);
 		}
 		else{
-			std::cout << "ERREUR" << std::endl;
+			std::cout << "\033[1;31mErreur :\n\tMauvais choix !\033[0m\n" << std::endl;
 		}
-		// cmd.clear();
-		// std::cout << "clear \n";
 	}
 	return (0);
 }
+
