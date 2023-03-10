@@ -2,16 +2,17 @@
 #include "Fixed.hpp"
 
 Fixed::Fixed() {
-	this->nb = 42;
 	std::cout << "Default Constructor called" << std::endl;
+	this->nb = 0;
 }
+
 Fixed::~Fixed() {
-	std::cout << "Destructeur called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &cpy) {
+	std::cout << "Copy constructor called" << std::endl;
 	*this = cpy;
-	std::cout << "Copy construtor called" << std::endl;
 }
 
 int	Fixed::getRawBits(void) const {

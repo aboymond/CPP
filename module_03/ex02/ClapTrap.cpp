@@ -31,7 +31,7 @@ void    ClapTrap::attack(const std::string& target){
 }
 
 void    ClapTrap::takeDamage(unsigned int amount){
-    if (this->_Hit > 0 && this->_Hit > amount){
+    if (this->_Hit > 0 && (unsigned)this->_Hit > amount){
         this->_Hit = this->_Hit - amount;
         if (this->_Hit <= 0){
             std::cout << "\033[31m" << this->_Name << " loses " << amount << " life points !\033[0m" << std::endl;

@@ -19,7 +19,7 @@ int	main()
 	while (1){
 		std::cout << "Faites un choix 'ADD', 'SEARCH', 'EXIT' :" << std::endl;
 		std::cin >> cmd;
-
+		std::cout << "Value " << cmd << std::endl;
 		if ((cmd == "ADD" || cmd == "add") && cmd.length() == 3){
 		std::cout << "Entrez vos informations :" << std::endl;
 		std::cin.ignore();

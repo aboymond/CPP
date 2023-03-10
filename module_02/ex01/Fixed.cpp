@@ -10,8 +10,8 @@ Fixed::Fixed(int nb) : _nb(nb << _nb_bits){
 }
 
 Fixed::Fixed(float nb){
-	this->_nb = (int)roundf(nb * (1 << this->_nb_bits));
 	std::cout << "Float Constructor called" << std::endl;
+	this->_nb = (int)roundf(nb * (1 << this->_nb_bits));
 }
 
 Fixed::~Fixed() {
@@ -19,12 +19,12 @@ Fixed::~Fixed() {
 }
 
 Fixed::Fixed(const Fixed &cpy) {
-	*this = cpy;
 	std::cout << "Copy construtor called" << std::endl;
+	*this = cpy;
 }
 
 int	Fixed::getRawBits(void) const {
-	std::cout << "getRawBits member function called" << std::endl;
+	//std::cout << "getRawBits member function called" << std::endl;
 	return this->_nb;
 }
 
