@@ -5,7 +5,7 @@ NAME			=		Animal
 
 #***** Sources / Objs *****#
 
-SRC				=		main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp Brain.cpp
+SRC				=		main.cpp Bureaucrat.cpp
 
 OBJS			=		$(SRC:.cpp=.o)
 

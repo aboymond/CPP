@@ -76,3 +76,4 @@ ClapTrap & ClapTrap::operator=(ClapTrap const &rhs){
     }
     return (*this);
 }
+
