@@ -16,6 +16,7 @@ public:
 	~Brain();
 
 	std::string getIdeas(int i);
+	void		setIdeas(std::string str);
 
 };
 

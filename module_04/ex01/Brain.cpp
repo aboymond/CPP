@@ -25,3 +25,9 @@ std::string	Brain::getIdeas(int i) {
 	return (this->_ideas[i]);
 }
 
+void	Brain::setIdeas(std::string str){
+	for (int i = 0; i < 100; i++ ){
+		_ideas[i] = str;
+	}
+}
+

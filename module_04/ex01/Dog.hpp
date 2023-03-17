@@ -18,6 +18,7 @@ public:
 
 	virtual void	makeSound();
 	void			DogSay(int i);
+	void			setThink(std::string str);
 };
 
 

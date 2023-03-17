@@ -10,12 +10,14 @@ Dog::Dog() : AAnimal(){
 }
 
 Dog::Dog (Dog const &cpy){
+	this->_brain = new Brain();
 	*this = cpy;
 }
 
 Dog & Dog::operator=(Dog const &rhs){
 	if (this != &rhs){
-		this->_brain = rhs._brain;
+		this->_type = rhs._type;
+		*this->_brain = *rhs._brain;
 	}
 	return (*this);
 }

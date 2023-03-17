@@ -10,12 +10,14 @@ Cat::Cat() : Animal(){
 }
 
 Cat::Cat (Cat const &cpy){
+	this->_brain = new Brain();
 	*this = cpy;
 }
 
 Cat & Cat::operator=(Cat const &rhs){
 	if (this != &rhs){
-		this->_brain = rhs._brain;
+		this->_type = rhs._type;
+		*this->_brain = *rhs._brain;
 	}
 	return (*this);
 }

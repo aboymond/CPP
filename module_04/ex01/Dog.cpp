@@ -10,12 +10,14 @@ Dog::Dog() : Animal(){
 }
 
 Dog::Dog (Dog const &cpy){
+	this->_brain = new Brain();
 	*this = cpy;
 }
 
 Dog & Dog::operator=(Dog const &rhs){
 	if (this != &rhs){
-		this->_brain = rhs._brain;
+		this->_type = rhs._type;
+		*this->_brain = *rhs._brain;
 	}
 	return (*this);
 }
@@ -26,6 +28,10 @@ void	Dog::makeSound() {
 
 void	Dog::DogSay(int i){
 	std::cout << "Dog think " << _brain->getIdeas(i) << std::endl;
+}
+
+void	Dog::setThink(std::string str){
+	_brain->setIdeas(str);
 }
 
 Dog::~Dog() {

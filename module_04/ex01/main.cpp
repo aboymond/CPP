@@ -8,7 +8,7 @@
 
 int main(){
 
-	Animal *animal = new Animal();
+	//Animal *animal = new Animal();
 	Animal *AnimalTab[10];
 	//WrongAnimal *wrongcat = new WrongCat();
 
@@ -49,6 +49,14 @@ int main(){
 	dog2.DogSay(0);
 	cat2.CatSay(1);
 
+	std::cout << "TEST COPY " << std::endl;
+
+	//std::cout << "dog 2 = " << &dog2 << std::endl;
+	Dog dog3 = Dog();
+	dog3 = dog2;
+	dog2.setThink("WOUUF I AM !");
+	dog3.DogSay(0);
+	dog2.DogSay(0);
 
 
 	return (0);
