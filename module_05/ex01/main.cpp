@@ -1,8 +1,7 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main(){
-//	Bureaucrat*	john = new Bureaucrat("john", -4);
-//	Bureaucrat*	louis = new Bureaucrat("louis", 50);
 
 	try
 	{

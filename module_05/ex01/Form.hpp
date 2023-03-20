@@ -7,6 +7,7 @@
 #include <string>
 #include <cmath>
 #include <fstream>
+#include "Bureaucrat.hpp"
 
 
 class Form {
@@ -28,9 +29,15 @@ public:
 		virtual const char* what() const throw();
 	};
 
-	class	GradeTooLowException : public std::exception{
+	class	GradeTooLowException : public std::exception {
 	public :
-		virtual const char* what() const throw();
+		virtual const char *what() const throw();
+	};
+
+	void		beSigned(Bureaucrat &bureaucrat);
+	int			getGradeRe_sign() const;
+	int			getGradeRe_exe() const;
+	std::string	getName() const;
 };
 
 	std::ostream & operator<<( std::ostream & o, Form const & rhs );
