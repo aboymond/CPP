@@ -5,7 +5,7 @@ int	main(){
 
 	try
 	{
-		Form form("B53", 12, 150);
+		AForm form("B53", 12, 150);
 		Bureaucrat quent("quent", 6);
 		while (quent.getGrade() > 5){
 			quent.incrementation();
@@ -22,7 +22,7 @@ int	main(){
 
 //		Bureaucrat gaby("gaby", 151);
 //		std::cout << gaby << std::endl;
-		Form form1("H235", 148, 12);
+		AForm form1("H235", 148, 12);
 		Bureaucrat lehib("lehib", 143);
 		while (lehib.getGrade() < 150) {
 			lehib.decrementation();

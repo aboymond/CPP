@@ -8,6 +8,7 @@
 #include <cmath>
 #include <fstream>
 #include <exception>
+#include "Form.hpp"
 
 
 class Bureaucrat {
