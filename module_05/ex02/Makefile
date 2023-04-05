@@ -5,7 +5,7 @@ NAME			=		bureaucrat
 
 #***** Sources / Objs *****#
 
-SRC				=		main.cpp Bureaucrat.cpp Form.cpp
+SRC				=		main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp
 
 OBJS			=		$(SRC:.cpp=.o)
 

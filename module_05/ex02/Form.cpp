@@ -2,7 +2,7 @@
 #include "Form.hpp"
 
 
-AForm::AForm() : _re_sign(150), _re_exe(150) {}
+AForm::AForm() : _name("Default"), _sign(false), _re_sign(0), _re_exe(0) {}
 
 AForm::AForm(std::string name, int re_sign, int re_exe) : _name(name), _sign(false), _re_sign(re_sign), _re_exe(re_exe){
 
@@ -14,7 +14,7 @@ AForm::AForm(std::string name, int re_sign, int re_exe) : _name(name), _sign(fal
 
 AForm::~AForm() {}
 
-AForm::AForm(AForm const &cpy) : _re_sign(cpy._re_sign), _re_exe(cpy._re_exe) {
+AForm::AForm(AForm const &cpy) : _name(cpy._name), _sign(cpy._sign), _re_sign(cpy._re_sign), _re_exe(cpy._re_exe) {
 	*this = cpy;
 }
 
@@ -36,6 +36,10 @@ const char *AForm::GradeTooLowException::what() const throw(){
 	return ("\33[31mGrade too low !\33[0m");
 }
 
+const char *AForm::ExecutorException::what() const throw() {
+	return ("\33[31mNothing to do, he can't sign it !\033[0m");
+}
+
 int AForm::getGradeRe_sign() const{
 	return (this->_re_sign);
 }
@@ -46,6 +50,10 @@ int AForm::getGradeRe_exe() const{
 
 std::string AForm::getName() const{
 	return (this->_name);
+}
+
+bool			AForm::getSign() const {
+	return (this->_sign);
 }
 
 void	AForm::beSigned(const Bureaucrat &bureaucrat) {

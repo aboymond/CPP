@@ -1,0 +1,237 @@
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+
+int	main(){
+
+	try
+	{
+		PresidentialPardonForm test = PresidentialPardonForm();
+//		AForm form("B53", 12, 150);
+		Bureaucrat quent("quent", 6);
+		while (quent.getGrade() > 5){
+			quent.incrementation();
+			std::cout << quent << std::endl;
+			std::cout << test << std::endl;
+			quent.signForm(test);
+		}
+//
+//		Bureaucrat alex("alex", 106);
+//		while (alex.getGrade() < 113){
+//			alex.decrementation();
+//			std::cout << alex << std::endl;
+//		}
+//
+////		Bureaucrat gaby("gaby", 151);
+////		std::cout << gaby << std::endl;
+//		AForm form1("H235", 148, 12);
+//		Bureaucrat lehib("lehib", 143);
+//		while (lehib.getGrade() < 150) {
+//			lehib.decrementation();
+//			std::cout << lehib << std::endl;
+//			std::cout << form1 << std::endl;
+//			lehib.signForm(form1);
+//		}
+
+	}
+	catch (std::exception & e)
+	{
+		std::cout << e.what() << std::endl;
+
+	}
+}
+
+
+#ifndef FORM_HPP
+#define FORM_HPP
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <cmath>
+#include <fstream>
+class AForm;
+#include "Bureaucrat.hpp"
+
+
+class AForm {
+private:
+	const std::string	_name;
+	bool				_sign;
+	const int 			_re_sign;
+	const int			_re_exe;
+protected:
+
+public:
+	AForm();
+	AForm(std::string name, int re_sign, int re_exe);
+	AForm(const AForm &cpy);
+	AForm &operator=(AForm const &rhs);
+	virtual ~AForm();
+
+	class 	GradeTooHighException : public std::exception{
+	public :
+		virtual const char* what() const throw();
+	};
+
+	class	GradeTooLowException : public std::exception {
+	public :
+		virtual const char* what() const throw();
+	};
+
+	class	ExecutorException : public std::exception {
+	public :
+		virtual const char* what() const throw();
+	};
+
+
+	virtual void	execute(Bureaucrat &executor) const = 0;
+	bool			getSign() const;
+	void			beSigned(const Bureaucrat &bureaucrat);
+	int				getGradeRe_sign() const;
+	int				getGradeRe_exe() const;
+	std::string		getName() const;
+};
+
+	std::ostream & operator<<( std::ostream & o, AForm const & rhs );
+
+
+#endif
+
+
+#include "Form.hpp"
+
+
+AForm::AForm() : _name("Default"), _sign(false), _re_sign(0), _re_exe(0) {}
+
+AForm::AForm(std::string name, int re_sign, int re_exe) : _name(name), _sign(false), _re_sign(re_sign), _re_exe(re_exe){
+
+	if (_re_sign < 1 || _re_exe < 1)
+		throw AForm::GradeTooHighException();
+	if (_re_sign > 150 || _re_exe > 150)
+		throw AForm::GradeTooLowException();
+}
+
+AForm::~AForm() {}
+
+AForm::AForm(AForm const &cpy) : _re_sign(cpy._re_sign), _re_exe(cpy._re_exe) {
+	*this = cpy;
+}
+
+AForm &AForm::operator=(AForm const &rhs) {
+	if (this != &rhs){
+//		this->_name = rhs._name;
+		_sign = rhs._sign;
+//		_re_sign = rhs._re_sign;
+//		_re_exe = rhs._re_exe;
+	}
+	return (*this);
+}
+
+const char	*AForm::GradeTooHighException::what() const throw(){
+	return ("\33[31mGrade too high !\33[0m");
+}
+
+const char *AForm::GradeTooLowException::what() const throw(){
+	return ("\33[31mGrade too low !\33[0m");
+}
+
+const char *AForm::ExecutorException::what() const throw() {
+	return ("\33[31mNothing to do, he can't sign it !\033[0m")
+}
+
+int AForm::getGradeRe_sign() const{
+	return (this->_re_sign);
+}
+
+int AForm::getGradeRe_exe() const{
+	return (this->_re_exe);
+}
+
+std::string AForm::getName() const{
+	return (this->_name);
+}
+
+bool			AForm::getSign() const {
+	return (this->_sign);
+}
+
+void	AForm::beSigned(const Bureaucrat &bureaucrat) {
+	if (bureaucrat.getGrade() > this->getGradeRe_sign())
+		throw GradeTooHighException();
+	else{
+		if (this->_sign != true)
+			_sign = true;
+	}
+}
+
+std::ostream & operator<<( std::ostream & o, AForm const & rhs ) {
+	o << "📄 The\33[34m " << rhs.getName() << "\33[0m grade \33[33m" << rhs.getGradeRe_sign() << "\33[0m is ready to be signed " << "\33[0m";
+	return (o);
+}
+
+
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
+
+#include "Form.hpp"
+
+class PresidentialPardonForm : public AForm {
+
+private:
+	std::string	_target;
+protected:
+public:
+	PresidentialPardonForm();
+	PresidentialPardonForm(std::string target);
+	PresidentialPardonForm(const PresidentialPardonForm &cpy);
+	PresidentialPardonForm &operator=(PresidentialPardonForm const &rhs);
+	~PresidentialPardonForm();
+
+	std::string getTarget() const;
+	virtual void		execute(Bureaucrat const &executor) const;
+};
+
+
+#endif
+
+
+#include "PresidentialPardonForm.hpp"
+
+PresidentialPardonForm::PresidentialPardonForm()  : AForm("Presidential Pardon Form", 25, 5), _target("Default") {}
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Pardon Form", 25, 5), _target(target) {}
+
+PresidentialPardonForm::~PresidentialPardonForm() {}
+
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &cpy) {
+    *this = cpy;
+}
+
+PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm const &rhs) {
+    if (this != &rhs) {
+		_target = rhs._target;
+		AForm::operator=(rhs);
+	}
+	return (*this);
+}
+
+std::string 			PresidentialPardonForm::getTarget() const {
+	return (this->_target);
+}
+
+void PresidentialPardonForm::execute(Bureaucrat const &executor){
+	if (getSign()){
+		if (executor.getGrade() <= getGradeRe_exe()){
+			std::cout << executor.getName() << " -> " << _target << ": was forgiven by Zaphod Beeblebrox" << std::endl;
+		}
+		else{
+			throw AForm::GradeTooLowException();
+		}
+	}
+	else{
+		throw AForm::ExecutorException();
+	}
+}
+

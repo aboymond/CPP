@@ -86,3 +86,12 @@ std::ostream & operator<<( std::ostream & o, Bureaucrat const & rhs ){
 	o << inc_dec << "\33[34m" << rhs.getName() << "\33[0m, bureaucrat grade \33[33m" << rhs.getGrade() << "\33[0m";
 	return (o);
 }
+
+void Bureaucrat::executeForm(const AForm &form) {
+	try {
+		form.execute((*this));
+	}
+	catch (std::exception &e) {
+		std::cout << _name  << " couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
+	}
+}

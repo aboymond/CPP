@@ -1,13 +1,13 @@
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <cmath>
 #include <fstream>
-class Form;
+class AForm;
 #include "Bureaucrat.hpp"
 
 
@@ -24,7 +24,7 @@ public:
 	AForm(std::string name, int re_sign, int re_exe);
 	AForm(const AForm &cpy);
 	AForm &operator=(AForm const &rhs);
-	~AForm();
+	virtual ~AForm();
 
 	class 	GradeTooHighException : public std::exception{
 	public :
@@ -33,13 +33,21 @@ public:
 
 	class	GradeTooLowException : public std::exception {
 	public :
-		virtual const char *what() const throw();
+		virtual const char* what() const throw();
 	};
-	virtual void executeForm()  = 0;
-	void		beSigned(const Bureaucrat &bureaucrat);
-	int			getGradeRe_sign() const;
-	int			getGradeRe_exe() const;
-	std::string	getName() const;
+
+	class	ExecutorException : public std::exception {
+	public :
+		virtual const char* what() const throw();
+	};
+
+	
+	virtual void	execute(Bureaucrat &executor) const = 0;
+	bool			getSign() const;
+	void			beSigned(const Bureaucrat &bureaucrat);
+	int				getGradeRe_sign() const;
+	int				getGradeRe_exe() const;
+	std::string		getName() const;
 };
 
 	std::ostream & operator<<( std::ostream & o, AForm const & rhs );
