@@ -42,7 +42,7 @@ public:
 	};
 
 	
-	virtual void	execute(Bureaucrat &executor) const = 0;
+	virtual void	execute(Bureaucrat const &executor) const = 0;
 	bool			getSign() const;
 	void			beSigned(const Bureaucrat &bureaucrat);
 	int				getGradeRe_sign() const;

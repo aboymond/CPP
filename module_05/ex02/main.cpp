@@ -6,34 +6,42 @@
 
 int	main(){
 
+	srand((unsigned) time(NULL));
 	try
 	{
-		PresidentialPardonForm test = PresidentialPardonForm("test");
+		PresidentialPardonForm stupid = PresidentialPardonForm("Break the boss car");
 //		AForm form("B53", 12, 150);
 		Bureaucrat quent("quent", 6);
-		while (quent.getGrade() > 5){
+		while (quent.getGrade() > 4){
 			quent.incrementation();
 			std::cout << quent << std::endl;
-			std::cout << test << std::endl;
-			quent.signForm(test);
+			std::cout << stupid << std::endl;
+			quent.signForm(stupid);
+			quent.executeForm(stupid);
+			std::cout << std::endl;
 		}
-//
-//		Bureaucrat alex("alex", 106);
-//		while (alex.getGrade() < 113){
-//			alex.decrementation();
-//			std::cout << alex << std::endl;
-//		}
-//
-////		Bureaucrat gaby("gaby", 151);
-////		std::cout << gaby << std::endl;
-//		AForm form1("H235", 148, 12);
-//		Bureaucrat lehib("lehib", 143);
-//		while (lehib.getGrade() < 150) {
-//			lehib.decrementation();
-//			std::cout << lehib << std::endl;
-//			std::cout << form1 << std::endl;
-//			lehib.signForm(form1);
-//		}
+
+		RobotomyRequestForm robot = RobotomyRequestForm("CutCut");
+		Bureaucrat alex("alex", 40);
+		while (alex.getGrade() < 47){
+			alex.decrementation();
+			std::cout << alex << std::endl;
+			std::cout << robot << std::endl;
+			alex.signForm(robot);
+			alex.executeForm(robot);
+			std::cout << std::endl;
+		}
+
+		ShrubberyCreationForm shrubb = ShrubberyCreationForm("Tree");
+		Bureaucrat gaby("gaby", 135);
+		while (gaby.getGrade() < 138) {
+			gaby.decrementation();
+			std::cout << gaby << std::endl;
+			std::cout << shrubb << std::endl;
+			gaby.signForm(shrubb);
+			gaby.executeForm(shrubb);
+			std::cout << std::endl;
+		}
 
 	}
 	catch (std::exception & e)

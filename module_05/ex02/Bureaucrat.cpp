@@ -64,7 +64,7 @@ void	Bureaucrat::decrementation() {
 	//std::cout << "\33[31m ⬇️\33[0m";
 }
 
-void	Bureaucrat::signForm(Form &form) {
+void	Bureaucrat::signForm(AForm &form) {
 	try
 	{
 		form.beSigned(*this);
@@ -72,7 +72,7 @@ void	Bureaucrat::signForm(Form &form) {
 	}
 	catch (std::exception & e)
 	{
-		std::cout << _name << " couldn't sign " << form.getName() << " because ";
+		std::cout << "🖋 \33[34m" << _name << "\33[0m couldn't sign " << form.getName() << " because ";
 		throw GradeTooLowException();
 	}
 }
@@ -90,8 +90,9 @@ std::ostream & operator<<( std::ostream & o, Bureaucrat const & rhs ){
 void Bureaucrat::executeForm(const AForm &form) {
 	try {
 		form.execute((*this));
+		std::cout << "⭕️ \33[34m" << _name << "\033[0m execute " << form.getName() << std::endl;
 	}
 	catch (std::exception &e) {
-		std::cout << _name  << " couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
+		std::cout << "❌ \33[34m" << _name  << "\33[0m couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
 	}
 }
