@@ -6,7 +6,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy r
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &cpy) {
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &cpy) : AForm(cpy.getName(), cpy.getGradeRe_sign(), cpy.getGradeRe_exe()) {
     *this = cpy;
 }
 
@@ -25,6 +25,8 @@ std::string 			RobotomyRequestForm::getTarget() const {
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const{
 	if (getSign()){
 		if (executor.getGrade() <= getGradeRe_exe()){
+			std::cout << "⭕️ \33[34m" << executor.getName() << "\033[0m execute " << _target << std::endl;
+
 			std::cout << "\033[32mBBBbbbrrrrrrrrrriiiiiiiiinnnnnnnnggggGGG Poo po po poO PO \033[0m" << std::endl;
 			int val = rand();
 			if (val % 2){

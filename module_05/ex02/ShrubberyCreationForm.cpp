@@ -7,7 +7,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubb
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &cpy) {
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &cpy) : AForm(cpy.getName(), cpy.getGradeRe_sign(), cpy.getGradeRe_exe()) {
     *this = cpy;
 }
 
@@ -26,8 +26,10 @@ std::string 			ShrubberyCreationForm::getTarget() const {
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const{
 	if (getSign()){
 		if (executor.getGrade() <= getGradeRe_exe()){
+			std::cout << "⭕️ \33[34m" << executor.getName() << "\033[0m execute " << _target << std::endl;
+
 			std::string file = _target + "_shrubbery";
-			std::ofstream output(file);
+			std::ofstream output(file.c_str());
 			output << "     .^.\n"
 					  "    .0.'.\n"
 					  "   .'.'0'.\n"

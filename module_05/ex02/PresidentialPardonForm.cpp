@@ -6,7 +6,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Pres
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &cpy) {
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &cpy) : AForm(cpy.getName(), cpy.getGradeRe_sign(), cpy.getGradeRe_exe()){
     *this = cpy;
 }
 
@@ -25,6 +25,8 @@ std::string 			PresidentialPardonForm::getTarget() const {
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const{
 	if (getSign()){
 		if (executor.getGrade() <= getGradeRe_exe()){
+			std::cout << "⭕️ \33[34m" << executor.getName() << "\033[0m execute " << _target << std::endl;
+
 			std::cout << "\033[33m" << _target << "\033[0m" << ": was forgiven by Zaphod Beeblebrox" << std::endl;
 		}
 		else{

@@ -90,7 +90,6 @@ std::ostream & operator<<( std::ostream & o, Bureaucrat const & rhs ){
 void Bureaucrat::executeForm(const AForm &form) {
 	try {
 		form.execute((*this));
-		std::cout << "⭕️ \33[34m" << _name << "\033[0m execute " << form.getName() << std::endl;
 	}
 	catch (std::exception &e) {
 		std::cout << "❌ \33[34m" << _name  << "\33[0m couldn’t execute " << form.getName() << " because " << e.what() << std::endl;

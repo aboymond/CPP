@@ -21,6 +21,8 @@ int	main(){
 			std::cout << std::endl;
 		}
 
+		std::cout << "----------------------------------------------------------" << std::endl;
+
 		RobotomyRequestForm robot = RobotomyRequestForm("CutCut");
 		Bureaucrat alex("alex", 40);
 		while (alex.getGrade() < 47){
@@ -31,6 +33,8 @@ int	main(){
 			alex.executeForm(robot);
 			std::cout << std::endl;
 		}
+
+		std::cout << "----------------------------------------------------------" << std::endl;
 
 		ShrubberyCreationForm shrubb = ShrubberyCreationForm("Tree");
 		Bureaucrat gaby("gaby", 135);
