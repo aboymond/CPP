@@ -5,60 +5,35 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-int	main(){
+int	main() {
 
 	srand((unsigned) time(NULL));
-	try
-	{
-		Intern RandomIntern;
-		AForm* rrf;
-		rrf = RandomIntern.makeForm("Shrubbery creation", "Bender");
+	try {
+			Intern RandomIntern3;
+			AForm* rrf3;
+			rrf3 = RandomIntern3.makeForm("Presidential pardon", "Pardon");
+			Bureaucrat gaby("alex", 5);
+			gaby.signForm(*rrf3);
+			gaby.executeForm(*rrf3);
 
-		PresidentialPardonForm stupid = PresidentialPardonForm("Break the boss car");
-//		AForm form("B53", 12, 150);
-		Bureaucrat quent("quent", 6);
-		quent.signForm(*rrf);
-//		rrf->beSigned(quent);
-		quent.executeForm(*rrf);
-//		while (quent.getGrade() > 4){
-//			quent.incrementation();
-//			std::cout << quent << std::endl;
-//			std::cout << stupid << std::endl;
-//			quent.signForm(stupid);
-//			quent.executeForm(stupid);
-//			std::cout << std::endl;
-//		}
-//
-//		std::cout << "----------------------------------------------------------" << std::endl;
-//
-//		RobotomyRequestForm robot = RobotomyRequestForm("CutCut");
-//		Bureaucrat alex("alex", 40);
-//		while (alex.getGrade() < 47){
-//			alex.decrementation();
-//			std::cout << alex << std::endl;
-//			std::cout << robot << std::endl;
-//			alex.signForm(robot);
-//			alex.executeForm(robot);
-//			std::cout << std::endl;
-//		}
-//
-//		std::cout << "----------------------------------------------------------" << std::endl;
+			Intern RandomIntern2;
+			AForm *rrf2;
+			rrf2 = RandomIntern2.makeForm("Robotomy request", "Robot");
+			Bureaucrat alex("alex", 32);
+			alex.signForm(*rrf2);
+			alex.executeForm(*rrf2);
 
-//		ShrubberyCreationForm shrubb = ShrubberyCreationForm("Tree");
-//		Bureaucrat gaby("gaby", 135);
-//		while (gaby.getGrade() < 138) {
-//			gaby.decrementation();
-//			std::cout << gaby << std::endl;
-//			std::cout << shrubb << std::endl;
-//			gaby.signForm(shrubb);
-//			gaby.executeForm(shrubb);
-//			std::cout << std::endl;
-//		}
+			Intern RandomIntern;
+			AForm *rrf;
+			rrf = RandomIntern.makeForm("Shrubbery creation", "Bender");
+			Bureaucrat quent("quent", 6);
+			quent.signForm(*rrf);
+			quent.executeForm(*rrf);
+			std::cout << std::endl;
+		}
 
-	}
-	catch (std::exception & e)
-	{
-		std::cout << e.what() << std::endl;
-
-	}
+		catch (std::exception &e) {
+			std::cout << e.what() << std::endl;
+		}
 }
+

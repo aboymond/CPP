@@ -24,10 +24,13 @@ AForm* Intern::makeForm(std::string formName, std::string target) {
 	std::string form[3] = {"Presidential pardon", "Robotomy request", "Shrubbery creation"};
 	AForm* (Intern::*ptr_form[3]) (std::string) = {&Intern::president, &Intern::robot, &Intern::shrubb};
 	_formName = formName;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++){
 		if (form[i] == formName)
 			return ((this->*ptr_form[i])(target));
-	return NULL;
+	}
+	std::cout << "The form " << formName << " doesn't exist !" << std::endl;
+	exit(0);
+	//return NULL;
 }
 AForm*	Intern::president(std::string target){
 	std::cout << "Intern creates " << _formName << std::endl;

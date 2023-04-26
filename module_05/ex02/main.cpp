@@ -38,7 +38,7 @@ int	main(){
 
 		ShrubberyCreationForm shrubb = ShrubberyCreationForm("Tree");
 		Bureaucrat gaby("gaby", 135);
-		while (gaby.getGrade() < 138) {
+		while (gaby.getGrade() < 139) {
 			gaby.decrementation();
 			std::cout << gaby << std::endl;
 			std::cout << shrubb << std::endl;
