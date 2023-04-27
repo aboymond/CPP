@@ -7,12 +7,12 @@ int main(int argc, char** argv)
 		exit(EXIT_FAILURE);
 	}
 	Convert input;
-	std::string	str(argv[1]);
-	std::cout << "Teeeest = " << str << std::endl;
+	std::string	str = static_cast<std::string>(argv[1]);
+	std::cout << "Input = " << str << std::endl;
 	if (str.length() == 1)
 		input.parsing_input_length_1(str);
 	else{
-		std::cout << "(argv != 1) = " << str << std::endl;
+		input.parsing_input(str);
 	}
 	return (0);
 }
