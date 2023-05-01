@@ -9,6 +9,8 @@
 #include <fstream>
 #include <cctype>
 #include <sstream>
+#include <climits>
+#include <locale>
 
 
 class Convert {
@@ -37,7 +39,8 @@ public:
 	void	printDouble(std::string todouble);
 	void	printFloat(std::string tofloat);
 	bool	comptChar(std::string input, char c);
-	int 	ft_stoi( std::string & s );
+	double 	ft_stof( std::string & s );
+	void	ft_error(std::string err);
 };
 
 
