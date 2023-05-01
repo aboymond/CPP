@@ -14,5 +14,6 @@ int main(int argc, char** argv)
 	else{
 		input.parsing_input(str);
 	}
+	input.convert_to(str);
 	return (0);
 }

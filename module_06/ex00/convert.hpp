@@ -8,6 +8,7 @@
 #include <cmath>
 #include <fstream>
 #include <cctype>
+#include <sstream>
 
 
 class Convert {
@@ -21,10 +22,6 @@ private:
 	Convert* to_int(std::string toint);
 	Convert* to_double(std::string todouble);
 	Convert* to_float(std::string tofloat);
-	Convert* printChar(std::string str);
-	Convert* printInt(std::string toint);
-	Convert* printDouble(std::string todouble);
-	Convert* printFloat(std::string tofloat);
 protected:
 
 public:
@@ -35,7 +32,12 @@ public:
 	void parsing_input(std::string input);
 	void parsing_input_length_1(std::string input);
 	Convert* convert_to(std::string convertto);
+	void	printChar(std::string str);
+	void	printInt(std::string toint);
+	void	printDouble(std::string todouble);
+	void	printFloat(std::string tofloat);
 	bool	comptChar(std::string input, char c);
+	int 	ft_stoi( std::string & s );
 };
 
 

@@ -2,6 +2,12 @@
 #include "convert.hpp"
 
 
+int Convert::ft_stoi( std::string & s ) {
+	int i;
+	std::istringstream(s) >> i;
+	return i;
+}
+
 Convert::Convert(){
 	_int = false;
 	_char = false;
@@ -33,7 +39,7 @@ void Convert::parsing_input(std::string input) {
 		}
 		for (int i = 0; input[i]; i++)
 			if ((input[i] >= 0 && input[i] <= 44) || (input[i] == 47) || (input[i] >= 58 && input[i] <= 101) || (input[i] >= 103 && input[i] <= 127)){
-				std::cout << "Error bad char = '" << input[i] << "'" << std::endl;
+				std::cout << "Error bad input = '" << input << "'" << std::endl;
 				exit (EXIT_FAILURE);
 		}
 
@@ -102,4 +108,53 @@ Convert &Convert::operator=(Convert const &rhs) {
 	if (this != &rhs){
 	}
 	return (*this);
+}
+
+Convert *Convert::convert_to(std::string convertto) {
+	Convert* (Convert::*ptr_conv[4]) (std::string) = {&Convert::to_char, &Convert::to_int, &Convert::to_float, &Convert::to_double};
+	for (int i = 0; i < 4; i++){
+		(this->*ptr_conv[i])(convertto);
+	}
+	exit (0);
+}
+
+Convert* Convert::to_char(std::string str) {
+	std::cout << "Test str" << str << std::endl;
+	int i = 0;
+	int ch;
+	while (i < str[i]){
+		i++;
+	}
+	if (i > 1)
+		ch  = ft_stoi(str);
+	if (_char == 1){
+		char c = str[0];
+		std::cout << "char = " << static_cast<char>(c) << std::endl;
+//		printChar(str);
+	}
+	else if (_char == 0 && (ch >= 32 && ch <= 126)){
+		std::cout << "Test str " << ch << std::endl;
+		std::cout << "char 1 = '" << static_cast<char>(ch) << "'" << std::endl;
+	}
+	else if ((_char == 0 && (ch >= 0 && ch <= 31)) || (_char == 0 && ch == 127)){
+		std::cout << "char = no displayable" << std::endl;
+	}
+	else
+		std::cout << "char = impossible" << std::endl;
+	return(0);
+}
+
+Convert* Convert::to_int(std::string str){
+	int c = ft_stoi(str);
+	std::cout << "test int = " << static_cast<float>(c) << std::endl;
+//	if (c < )
+	return (0);
+}
+Convert* Convert::to_double(std::string str){
+	(void)str;
+	return (0);
+}
+Convert* Convert::to_float(std::string str){
+	(void)str;
+	return (0);
 }
