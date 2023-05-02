@@ -2,11 +2,17 @@
 #include "convert.hpp"
 
 
-double Convert::ft_stof( std::string & s ) {
+static float ft_stof( std::string & s ) {
 	float i;
 	std::stringstream	extract;
 	extract << s;
 	extract >> i;
+	return i;
+}
+
+static int ft_stoi( std::string & s ) {
+	int i;
+	std::istringstream(s) >> i;
 	return i;
 }
 
@@ -27,9 +33,15 @@ void Convert::parsing_input(std::string input) {
 	bool comp_dash = false;
 	if (input == "-inff" || input == "+inff" || input == "nanf"){
 		_float = true;
+		_spec = true;
+		if (input != "nanf" && input != "-inff")
+			_c = input[0];
 	}
 	else if (input == "-inf" || input == "+inf" || input == "nan"){
 		_double = true;
+		_spec = true;
+		if (input != "nan" && input != "-inf")
+			_c = input[0];
 	}
 	else{
 		comp_dash = comptChar(input, '-');
@@ -54,7 +66,7 @@ void Convert::parsing_input(std::string input) {
 		else
 			_int = true;
 	}
-	std::cout << "int = " << _int << " | " << "char = " << _char  << " | " << "float = " << _float  << " | " << "double = " << _double << std::endl;
+	std::cout << "\033[33mint = " << _int << " | " << "char = " << _char  << " | " << "float = " << _float  << " | " << "double = " << _double << "\033[0m" << std::endl;
 }
 
 bool Convert::comptChar(std::string input, char c){
@@ -93,14 +105,13 @@ void Convert::parsing_input_length_1(std::string input){
 	}
 	else if ((input[0] >= 65 && input[0] <= 90) || (input[0] >= 97 && input[0] <= 122)){
 		_char = true;
-		std::cout << input << " = char" << std::endl;
 	}
 	else{
 		_int = false;
 		_char = false;
 		std::cout << "'" << input << "'" << "is wrong input" << std::endl;
 	}
-	std::cout << "int = " << _int  << " | " << "char = " << _char  << " | " << "float = " << _float  << " | " << "double = " << _double << std::endl;
+	std::cout << "\033[33mint = " << _int  << " | " << "char = " << _char  << " | " << "float = " << _float  << " | " << "double = " << _double << "\033[0m" << std::endl;
 }
 
 Convert &Convert::operator=(Convert const &rhs) {
@@ -124,54 +135,95 @@ Convert* Convert::to_char(std::string str) {
 		i++;
 	}
 	if (i > 1)
-		ch  = ft_stof(str);
-	if (_char == 1){
-		char c = str[0];
-		std::cout << "char = " << static_cast<char>(c) << std::endl;
-//		printChar(str);
-	}
-	else if (_char == 0 && (ch >= 32 && ch <= 126)){
-		std::cout << "char = '" << static_cast<char>(ch) << "'" << std::endl;
-	}
-	else if ((_char == 0 || (ch >= 0 && ch <= 31)) || (_char == 0 && ch == 127)){
-		std::cout << "char = no displayable" << std::endl;
-	}
-	else
+		ch  = ft_stoi(str);
+	if (_spec == true) {
 		std::cout << "char = impossible" << std::endl;
+	}
+	else{
+		if (_char == true) {
+			char c = str[0];
+			std::cout << "char = " << static_cast<char>(c) << std::endl;
+		}
+		else if (_char == 0 && (ch >= 32 && ch <= 126)) {
+			std::cout << "char = '" << static_cast<char>(ch) << "'" << std::endl;
+		}
+		else if (_char == 0 && ((ch >= 0 && ch <= 31) || (ch >= 127 && ch <= 256))) {
+			std::cout << "char = no displayable" << std::endl;
+		}
+		else
+			std::cout << "char = impossible" << std::endl;
+	}
+
 	return(0);
 }
 
 Convert* Convert::to_int(std::string str){
-	double c = ft_stof(str);
-	if (_int == true && _char == false){
-		if (c >= INT_MIN || c <= INT_MAX){
-			std::cout << "int = " << static_cast<int>(c) << std::endl;
-		}
-		else {
-			std::cout << "int = impossible" << std::endl;
-		}
-	}
-	else
+	int c = ft_stoi(str);
+	char ch = str[0];
+	if (_spec == true){
 		std::cout << "int = impossible" << std::endl;
+	}
+	else{
+		if (_char == false){
+			if (c >= INT_MIN || c <= INT_MAX){
+				std::cout << "int = " << static_cast<int>(c) << std::endl;
+			}
+			else {
+				std::cout << "int = impossible" << std::endl;
+			}
+		}
+		else
+			std::cout << "int = "<< static_cast<int>(ch) << std::endl;
+	}
 	return (0);
 }
 Convert* Convert::to_double(std::string str){
-	if (_int == true && _char == false){
-		std::cout << "double = " << static_cast<double>(ft_stof(str)) << ".0" << std::endl;
+	char c = str[0];
+	if (_float == true)
+		str[str.length() - 1] = '\0';
+	if (_spec == true){
+		std::cout << "double = " << _c << static_cast<double>(ft_stof(str)) << std::endl;
 	}
-	else
-		std::cout << "double = impossible" << std::endl;
+	else{
+		if (_char == false && _int == true){
+			std::cout << "double = " << str << ".0" << std::endl;
+		}
+		else if (_float == true || _double == true){
+			std::cout << "double = " << static_cast<double>(ft_stof(str)) << std::endl;
+
+		}
+		else if (_char == true){
+			std::cout << "double = " << static_cast<int>(c) << ".0" << std::endl;
+		}
+		else
+			std::cout << "double = impossible" << std::endl;
+	}
 	return (0);
 }
 Convert* Convert::to_float(std::string str){
-	if (_int == true && _char == false){
-		if (_float == false)
-			std::cout << "float = " << static_cast<float>(ft_stof(str)) << ".0f" << std::endl;
-		else
-			std::cout << "float = " << static_cast<float>(ft_stof(str)) << "f" << std::endl;
+	char c = str[0];
+	if (_float == true && _spec == true)
+		str[str.length() - 1] = '\0';
+	if (_spec == true){
+		std::cout << "float = " << _c << static_cast<float>(ft_stof(str)) << "f" << std::endl;
 	}
-	else
-		std::cout << "float = impossible" << std::endl;
+	else{
+		if (_char == false){
+			if (_float == false)
+				if (_int == true)
+					std::cout << "float = " << static_cast<float>(ft_stof(str)) << ".0f" << std::endl;
+				else
+					std::cout << "float = " << static_cast<float>(ft_stof(str)) << "f" << std::endl;
+
+			else
+				std::cout << "float = " << str << std::endl;
+		}
+		else if (_char == true){
+			std::cout << "float = " << static_cast<int>(c) << ".0f" << std::endl;
+		}
+		else
+			std::cout << "float = impossible" << std::endl;
+	}
 	return (0);
 }
 

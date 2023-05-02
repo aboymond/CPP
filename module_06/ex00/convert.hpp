@@ -19,6 +19,8 @@ private:
 	bool 	_char;
 	bool 	_float;
 	bool 	_double;
+	bool	_spec;
+	char 	_c;
 //	int		_comp_points;
 	Convert* to_char(std::string str);
 	Convert* to_int(std::string toint);
@@ -39,7 +41,6 @@ public:
 	void	printDouble(std::string todouble);
 	void	printFloat(std::string tofloat);
 	bool	comptChar(std::string input, char c);
-	double 	ft_stof( std::string & s );
 	void	ft_error(std::string err);
 };
 
