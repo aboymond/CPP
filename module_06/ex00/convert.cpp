@@ -177,57 +177,106 @@ Convert* Convert::to_int(std::string str){
 	}
 	return (0);
 }
-Convert* Convert::to_double(std::string str){
-	char c = str[0];
-	if (_float == true)
-		str[str.length() - 1] = '\0';
-	if (_spec == true){
-		std::cout << "double = " << _c << static_cast<double>(ft_stof(str)) << std::endl;
-	}
-	else{
-		if (_char == false && _int == true){
-			std::cout << "double = " << str << ".0" << std::endl;
-		}
-		else if (_float == true || _double == true){
-			std::cout << "double = " << static_cast<double>(ft_stof(str)) << std::endl;
+//Convert* Convert::to_double(std::string str){
+//	char c = str[0];
+//	if (_float == true)
+//		str[str.length() - 1] = '\0';
+//	if (_spec == true){
+//		std::cout << "double = " << _c << static_cast<double>(ft_stof(str)) << std::endl;
+//	}
+//	else{
+//		if (_char == false && _int == true){
+//			std::cout << "double = " << str << ".0" << std::endl;
+//		}
+//		else if (_float == true || _double == true){
+//			std::cout << "double = " << std::fixed << std::setprecision(1) << static_cast<double>(ft_stof(str)) << std::endl;
+//
+//		}
+//		else if (_char == true){
+//			std::cout << "double = " << static_cast<int>(c) << ".0" << std::endl;
+//		}
+//		else
+//			std::cout << "double = impossible" << std::endl;
+//	}
+//	return (0);
+//}
 
-		}
-		else if (_char == true){
-			std::cout << "double = " << static_cast<int>(c) << ".0" << std::endl;
-		}
-		else
-			std::cout << "double = impossible" << std::endl;
-	}
-	return (0);
-}
-Convert* Convert::to_float(std::string str){
-	char c = str[0];
-	if (_float == true && _spec == true)
-		str[str.length() - 1] = '\0';
-	if (_spec == true){
-		std::cout << "float = " << _c << static_cast<float>(ft_stof(str)) << "f" << std::endl;
-	}
-	else{
-		if (_char == false){
-			if (_float == false)
-				if (_int == true)
-					std::cout << "float = " << static_cast<float>(ft_stof(str)) << ".0f" << std::endl;
-				else
-					std::cout << "float = " << static_cast<float>(ft_stof(str)) << "f" << std::endl;
-
-			else
-				std::cout << "float = " << str << std::endl;
-		}
-		else if (_char == true){
-			std::cout << "float = " << static_cast<int>(c) << ".0f" << std::endl;
-		}
-		else
-			std::cout << "float = impossible" << std::endl;
-	}
-	return (0);
-}
+//Convert* Convert::to_float(std::string str){
+//	char c = str[0];
+//	if (_float == true || _spec == true)
+//		str[str.length() - 1] = '\0';
+//	if (_spec == true){
+//		std::cout << "float = " << _c << str << "f" << std::endl;
+//	}
+//	else{
+//		if (_char == false){
+//			if (_float == false)
+//				if (_int == true)
+//					std::cout << "float = " << std::fixed << std::setprecision(1) << static_cast<float>(ft_stof(str)) << "f" << std::endl;
+//				else
+//					std::cout << "float = " << std::fixed << std::setprecision(1) << static_cast<float>(ft_stof(str)) << "f" << std::endl;
+//
+//			else
+//				std::cout << "float = " << std::fixed << std::setprecision(1) << static_cast<float>(ft_stof(str)) << "f" << std::endl;
+//		}
+//		else if (_char == true){
+//			std::cout << "float = " << static_cast<int>(c) << ".0f" << std::endl;
+//		}
+//		else
+//			std::cout << "float = impossible" << std::endl;
+//	}
+//	return (0);
+//}
 
 void	Convert::ft_error(std::string err){
 	std::cout << "\033[1;31mError:\n\tBad input: '" << err << "'\033[0m" << std::endl;
 	exit (EXIT_FAILURE);
+}
+
+Convert* Convert::to_double(std::string str) {
+
+	if (_float == true)
+		str[str.length() - 1] = '\0';
+	double	str_d = static_cast<double>(ft_stof(str));
+	if (_double == true)
+		if (_spec == true)
+			std::cout << "double = " << _c << std::fixed << std::setprecision(1) << str_d << std::endl;
+		else
+			std::cout << "double = " << std::fixed << std::setprecision(1) << str_d << std::endl;
+	else{
+		if (_spec == true)
+			std::cout << "double = " << _c << std::fixed << std::setprecision(1) << str_d << std::endl;
+		else if (_char == true){
+			char c = str[0];
+			std::cout << "double = " << std::fixed << std::setprecision(1) << static_cast<double>(c) << std::endl;
+		}
+		else
+			std::cout << "double = " << std::fixed << std::setprecision(1) << str_d << std::endl;
+
+	}
+
+	return (0);
+}
+
+Convert* Convert::to_float(std::string str){
+	if (_float == true){
+		str[str.length() - 1] = '\0';
+		double	str_f = static_cast<double>(ft_stof(str));
+		if (_spec == true)
+			std::cout << "float = " << _c << std::fixed << std::setprecision(1) << str_f << "f" << std::endl;
+		else
+			std::cout << "float = " << std::fixed << std::setprecision(1) << str_f << "f" << std::endl;
+	}
+	else{
+		if (_spec == true)
+			std::cout << "float = " << _c << std::fixed << std::setprecision(1) << ft_stof(str) << "f" << std::endl;
+		else if (_char == true){
+			char c = str[0];
+			std::cout << "float = " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f" << std::endl;
+		}
+		else
+			std::cout << "float = " << std::fixed << std::setprecision(1) << ft_stof(str) << "f" << std::endl;
+
+	}
+	return (0);
 }
