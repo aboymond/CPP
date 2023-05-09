@@ -5,7 +5,7 @@ NAME			=		data
 
 #***** Sources / Objs *****#
 
-SRC				=		main.cpp
+SRC				=		main.cpp Base.cpp
 
 OBJS			=		$(SRC:.cpp=.o)
 
