@@ -17,7 +17,7 @@
 template<typename T>
 void	easyfind(T &param, int const i)
 {
-	typename	T::const_iterator it;
+	typename	T::iterator it;
 	for (it = param.begin(); it != param.end(); ++it){
 		if (*it == i){
 			std::cout << "The first occurrence is = '" << *it << "'" << std::endl;

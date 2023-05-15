@@ -18,6 +18,7 @@ class Span {
 private:
 	unsigned int _N;
 	std::vector<int> _tab;
+	std::vector<int> _vec;
 protected:
 
 public:
@@ -28,8 +29,11 @@ public:
 	~Span();
 
 	void	addNumber(unsigned int num);
-	void	shortestSpan();
-	void	longestSpan();
+	int 	shortestSpan();
+	int 	longestSpan();
+
+	int 	maxVector();
+	int 	minVector();
 
 	class	ExecutorException : public std::exception {
 	public :

@@ -3,10 +3,16 @@
 int main(){
 	try{
 		Span sp;
-		sp = Span(2);
-		sp.addNumber(1);
-		sp.addNumber(10);
+		sp = Span(5);
+		sp.addNumber(12);
+		sp.addNumber(60);
 		sp.addNumber(5);
+		sp.addNumber(38);
+		sp.addNumber(25);
+		std::cout << "max = " << sp.maxVector() << std::endl;
+		std::cout << "min = " << sp.minVector() << std::endl;
+		std::cout << "delta max = " << sp.longestSpan() << std::endl;
+		std::cout << "min delta = " << sp.shortestSpan() << std::endl;
 	}
 	catch(std::exception &e)
 	{
