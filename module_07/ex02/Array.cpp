@@ -28,6 +28,6 @@ Array &Array::operator=(Array const &rhs) {
 	return (*this);
 }
 
-const char *Array::ExecutorException::what() const throw(){
-	std::cout << "erreur lambda en attente d'une idee de genie" << std::endl;
-}
+//const char *Array::ExecutorException::what() const throw(){
+//	std::cout << "erreur lambda en attente d'une idee de genie" << std::endl;
+//}

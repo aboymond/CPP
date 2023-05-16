@@ -29,6 +29,7 @@ public:
 	~Span();
 
 	void	addNumber(unsigned int num);
+	void	addVectorNum(int *num);
 	int 	shortestSpan();
 	int 	longestSpan();
 

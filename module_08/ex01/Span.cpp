@@ -30,6 +30,12 @@ void	Span::addNumber(unsigned int num){
 		throw Span::ExecutorException();
 }
 
+void	Span::addVectorNum(int *num){
+	for (int i = 0; num[i]; i++){
+		addNumber(num[i]);
+	}
+}
+
 const char *Span::ExecutorException::what() const throw(){
 	return("Span overflow");
 }
