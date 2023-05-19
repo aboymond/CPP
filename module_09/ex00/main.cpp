@@ -3,8 +3,11 @@
 
 int	main(int argc, char** argv){
 	BitcoinExchange test;
-	test.inputCheck(argc, argv);
 
-	std::ifstream fd(static_cast<std::string>argv[1]);
-	if (!fd.is_open())
+//	(void)argc;
+	test.inputCheck(argc, argv);
+	test.addDbToMap();
+	test.splitInput(argv);
+
+	return (0);
 }
