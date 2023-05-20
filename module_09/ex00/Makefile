@@ -48,8 +48,8 @@ LOGO_CPP			=		echo "$(GREEN)\t        CCCCCCCCCCCCCPPPPPPPPPPPPPPPPP   PPPPPPPPP
 
 #***** Flags *****#
 
-CXX				=		c++
-CXXFLAGS			=		-Wall -Wextra -Werror -std=c++98 -g
+CXX				=		g++
+CXXFLAGS			=		-Wall -Wextra -Werror -std=c++11 -g
 L				=		$(CXXFLAGS) -g -fsanitize=address -fno-omit-frame-pointer
 RM				=		rm -f
 

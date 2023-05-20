@@ -6,10 +6,6 @@ BitcoinExchange::BitcoinExchange() : _data() {}
 
 BitcoinExchange::~BitcoinExchange() {}
 
-//BitcoinExchange::BitcoinExchange(BitcoinExchange const &cpy) {
-//	*this = cpy;
-//}
-
 BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs) {
 	_val = rhs._val;
 	_data = rhs._data;
@@ -17,15 +13,14 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs) {
 }
 
 void	BitcoinExchange::inputCheck(int argc, char **argv){
-	std::cout << "argc = " << argc << " argv[1] = " << argv[1] << std::endl;
 	if (argc != 2){
-		std::cout << "Error: could not open file." << std::endl;
+		std::cerr << "Error: could not open file." << std::endl;
 		exit (EXIT_FAILURE);
 	}
 	else{
 		std::string	input = argv[1];
 		if (input != "input.txt"){
-			std::cout << "Error: could not open file." << std::endl;
+			std::cerr << "Error: could not open file." << std::endl;
 			exit (EXIT_FAILURE);
 		}
 		else
@@ -44,12 +39,8 @@ void	BitcoinExchange::addDbToMap(){
 		std::string val;
 		getline(ss, key, ',');
 		getline(ss, val, '\n');
-//		std::cout << "DB val = " << val << std::endl;
-		double f = std::stod(val);
-//		std::cout << "f = " << f << std::endl;
+		float f = std::stof(val);
 		_data[key] = f;
-//		std::cout << "DB = " << _data[key] << std::endl;
-
 	}
 	fd.close();
 }
@@ -58,7 +49,7 @@ void	BitcoinExchange::splitInput(char **argv){
 	std::string line;
 	std::ifstream fd(argv[1]);
 	if (!fd.is_open()){
-		std::cout << "impossible to open file: "<< argv[1] << std::endl;
+		std::cerr << "impossible to open file: "<< argv[1] << std::endl;
 		fd.close();
 		exit (EXIT_FAILURE);
 	}
@@ -69,7 +60,7 @@ void	BitcoinExchange::splitInput(char **argv){
 	while (std::getline(fd, line)) {
 
 		if (line.empty()) {
-			std::cout << "Error line is empty" << std::endl;
+			std::cerr << "Error line is empty" << std::endl;
 		}
 		std::stringstream key_val(line);
 		std::string key;
@@ -79,51 +70,55 @@ void	BitcoinExchange::splitInput(char **argv){
 		key_val >> val;
 		key_val >> val;
 
-//		std::cout << "key = " << key << std::endl;
-//		std::cout << "val = " << val << std::endl;
-
-		dateCheck(key);
-		if (!val.empty()){
-			valueCheck(val);
-			_val = val;
+		if (dateCheck(key) == false && valueCheck(val) == false){
 			checkMatch(key, val);
 		}
-		else
-			continue;
 	}
 	fd.close();
 }
 
-void	BitcoinExchange::dateCheck(std::string const &key){
+bool	BitcoinExchange::dateCheck(std::string const &key){
+	bool	err = false;
 	std::stringstream date(key);
-	std::tm tmb = {};
-	date >> std::get_time(&tmb, "%Y-%m-%d");
-	if (date == 0){
-		std::cout << "Error: Bad input => " << key << std::endl;
+	std::tm tmd = {};
+	date >> std::get_time(&tmd, "%Y-%m-%d");
+	if (!date){
+		std::cerr << "Error: Bad input => " << key << std::endl;
+		err = true;
 	}
+	return (err);
 }
 
-void	BitcoinExchange::valueCheck(std::string const &val){
+bool	BitcoinExchange::valueCheck(std::string const &val){
 
+	bool	err = false;
 	float valtest = std::stof(val);
-//	std::cout << "valtest = " << valtest << " / val = " << val << std::endl;
-	if (valtest < 0.0f || valtest > 1000.0f)
-		std::cout << "Error in checker = " << _val << std::endl;
+	if (valtest < 0 || valtest > 1000){
+		if (valtest < 0){
+			std::cerr << "Error: not a positive number." << std::endl;
+		}
+		else{
+			std::cerr << "Error: too large a number." << std::endl;
+		}
+		err = true;
+	}
+	return (err);
 }
 
 void	BitcoinExchange::checkMatch(std::string const &key, std::string const &value){
-	(void)key;
 	if (value.empty())
 		return;
+
 	float	val = std::stof(value);
-	(void)val;
 
 	if (_data.find(key) != _data.end()){
-		double val_DB = _data[key];
-		std::cout << "TEEEEEST " << val_DB * val << std::endl;
-//		std::map<std::string, std::string >::iterator it = _data.find(key);
-//		std::cout << "value = " << val << "\t / _val = " << _val << std::endl;
-//		std::cout << key << " => " << it->second << std::endl;
-//		std::cout << key << " => " << val * val_DB << std::endl;
+		float val_DB = _data[key];
+		std::cout << key << " => " << val * val_DB << std::endl;
+	}
+	else{
+		std::map<std::string, float>::iterator it;
+		it = _data.lower_bound(key);
+		it--;
+		std::cout << key << " => " << it->second * val << std::endl;
 	}
 }

@@ -13,6 +13,7 @@
 #include <stdexcept>
 #include <exception>
 #include <list>
+#include <cstdlib>
 #include <map>
 
 
@@ -32,8 +33,8 @@ public:
 	void	addDbToMap();
 	void	inputCheck(int argc, char **argv);
 	void	splitInput(char **argv);
-	void	dateCheck(std::string const &key);
-	void	valueCheck(std::string const &val);
+	bool	dateCheck(std::string const &key);
+	bool	valueCheck(std::string const &val);
 	void	checkMatch(std::string const &key, std::string const &value);
 };
 
