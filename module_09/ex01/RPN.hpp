@@ -19,15 +19,19 @@
 
 class RPN {
 private:
+	std::string _input;
 protected:
 public:
 	RPN();
+	RPN(std::string argv);
 
 	RPN(const RPN &cpy);
 
 	RPN &operator=(RPN const &rhs);
 
 	~RPN();
+
+	void	polishNotation();
 };
 
 
