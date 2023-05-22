@@ -54,8 +54,7 @@ void	BitcoinExchange::splitInput(char **argv){
 		exit (EXIT_FAILURE);
 	}
 
-	std::map<std::string, std::vector<float> >	data;
-	std::getline(fd, line);
+	std::map<std::string, float >	data;
 	std::getline(fd, line);
 	while (std::getline(fd, line)) {
 
