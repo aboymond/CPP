@@ -40,21 +40,39 @@ int main (int argc, char **argv){
 //	Fonction operator stack
 
 	int tmp_int;
+	bool test = false;
 	int tmp_result = 0;
 	while (!stack_int.empty()){
 		tmp_int = stack_int.top();
 		stack_int.pop();
 		if (stack_char.top() == '+'){
-			tmp_result = (tmp_result + tmp_int) + stack_int.top();
-			stack_int.pop();
-			stack_char.pop();
+			if (test == false){
+				tmp_result = (tmp_result + tmp_int) + stack_int.top();
+				stack_int.pop();
+				stack_char.pop();
+				test = true;
+			}
+			else{
+				tmp_result = tmp_result + stack_int.top();
+				stack_int.pop();
+				stack_char.pop();
+			}
 		}
 		else if (stack_char.top() == '-'){
-			tmp_result = (tmp_result + tmp_int) + stack_int.top();
-			stack_int.pop();
-			stack_char.pop();
+			if (test == false){
+				tmp_result = tmp_result - stack_int.top();
+				stack_int.pop();
+				stack_char.pop();
+				test = true;
+			}
+			else{
+				tmp_result = tmp_result - stack_int.top();
+				stack_int.pop();
+				stack_char.pop();
+			}
 		}
 	}
+	std::cout << "result = " << tmp_result << std::endl;
 
 
 	return (0);
