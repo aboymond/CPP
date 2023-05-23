@@ -1,6 +1,13 @@
 
 #include "BitcoinExchange.hpp"
 
+static float ft_stof( std::string const & s ) {
+	float i;
+	std::stringstream	extract;
+	extract << s;
+	extract >> i;
+	return i;
+}
 
 BitcoinExchange::BitcoinExchange() : _data() {}
 
@@ -39,7 +46,7 @@ void	BitcoinExchange::addDbToMap(){
 		std::string val;
 		getline(ss, key, ',');
 		getline(ss, val, '\n');
-		float f = std::stof(val);
+		float f = ft_stof(val);
 		_data[key] = f;
 	}
 	fd.close();
@@ -91,7 +98,7 @@ bool	BitcoinExchange::dateCheck(std::string const &key){
 bool	BitcoinExchange::valueCheck(std::string const &val){
 
 	bool	err = false;
-	float valtest = std::stof(val);
+	float valtest = ft_stof(val);
 	if (valtest < 0 || valtest > 1000){
 		if (valtest < 0){
 			std::cerr << "Error: not a positive number." << std::endl;
@@ -108,7 +115,7 @@ void	BitcoinExchange::checkMatch(std::string const &key, std::string const &valu
 	if (value.empty())
 		return;
 
-	float	val = std::stof(value);
+	float	val = ft_stof(value);
 
 	if (_data.find(key) != _data.end()){
 		float val_DB = _data[key];

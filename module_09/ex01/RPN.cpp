@@ -1,6 +1,12 @@
 
 #include "RPN.hpp"
 
+static int ft_stoi( std::string const & s ) {
+	int i;
+	std::istringstream(s) >> i;
+	return i;
+}
+
 RPN::RPN() {}
 RPN::RPN(std::string argv){
 	_input = argv;
@@ -23,11 +29,15 @@ void	RPN::polishNotation() {
 	std::stack<int> stack_int;
 	for (unsigned int i = 0; i < _input.size(); i++){
 		if (isdigit(_input[i])){
-			stack_int.push(std::stoi(std::string(1, _input[i])));
+			stack_int.push(ft_stoi(std::string(1, _input[i])));
 		}
 		else if (_input[i] == '+' || _input[i] == '-' || _input[i] == '/' || _input[i] == '*'){
 			int a;
 			int b;
+			if (stack_int.size() < 2){
+				std::cerr << "Error: Minimum 2 integers in the stack " << std::endl;
+				exit(EXIT_FAILURE);
+			}
 			b = static_cast<int>(stack_int.top());
 			stack_int.pop();
 			a = static_cast<int>(stack_int.top());
@@ -45,17 +55,26 @@ void	RPN::polishNotation() {
 				stack_int.push(result);
 			}
 			else{
-				result = a / b;
-				stack_int.push(result);
+				if (a == 0 || b == 0) {
+					std::cerr << "Error: Division by zero" << std::endl;
+					exit(EXIT_FAILURE);
+				}
+					result = a / b;
+					stack_int.push(result);
+
 			}
 
 		}
 		else if (_input[i] == ' ' || _input[i] == '\n')
 			continue;
 		else{
-			std::cout << "Error" << std::endl;
+			std::cerr << "Error" << std::endl;
 			exit (EXIT_FAILURE);
 		}
+	}
+	if (stack_int.size() > 1){
+		std::cerr << "Error: there are still several integers in the stack" << std::endl;
+		exit(EXIT_FAILURE);
 	}
 	std::cout << "result = " << result << std::endl;
 }

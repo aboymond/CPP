@@ -11,6 +11,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <exception>
+#include <vector>
 #include <list>
 
 

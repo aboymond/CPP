@@ -6,7 +6,12 @@ int main (int argc, char **argv) {
 		std::cerr << "Error: Bad input" << std::endl;
 		return (EXIT_FAILURE);
 	}
-	RPN polish(argv[1]);
-	polish.polishNotation();
+	try{
+		RPN polish(argv[1]);
+		polish.polishNotation();
+	}
+	catch(std::exception &e){
+		std::cout << e.what() << std::endl;
+	}
 	return (0);
 }
