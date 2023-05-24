@@ -23,17 +23,21 @@ int main(int argc, char **argv){
 		exit (EXIT_FAILURE);
 	}
 	for (int i = 1; argv[i]; i++){
-		if (std::stoi(argv[i]) < 0){
+		if (std::atoi(argv[i]) < 0){
 			std::cout << "Error: Not a positive integer" << std::endl;
+			exit (EXIT_FAILURE);
+		}
+		else if (std::atoi(argv[i]) >= 468366449){
+			std::cout << "Error: INT_MAX" << std::endl;
 			exit (EXIT_FAILURE);
 		}
 	}
 
-	bool pair = false;
+	bool pair_ok = false;
 	int val1;
 	int val2;
 	if ((argc - 1) % 2 == 0)
-		pair = true;
+		pair_ok = true;
 
 	//Init vector pair
 	std::cout << "Init vector pair" << std::endl;
@@ -41,7 +45,7 @@ int main(int argc, char **argv){
 	std::vector< std::pair<int,int> > vec;
 	for (int i = 1; i < argc; i += 2){
 		val1 = std::atoi(argv[i]);
-		if (pair == false && argv[i + 1] == '\0')
+		if (!pair_ok && argv[i + 1] == NULL)
 			val2 = -1;
 		else
 			val2 = std::atoi(argv[i + 1]);
@@ -60,23 +64,23 @@ int main(int argc, char **argv){
 		std::cout << it->first << ": " << it->second << std::endl;
 	}
 
-	//To vector
+	//To pre_sort
 	std::cout << "To vector " << std::endl;
 
-	int pos;
+//	int pos;
 	std::vector<int> to_vec;
 	for (it = vec.begin(); it != vec.end(); ++it ){
 		if (to_vec.empty())
 			to_vec.push_back(it->first);
 		else if (it->first == -1)
 			continue;
-		else{
-			pos = std::find(to_vec.begin(), to_vec.end(), it->first)
-			to_vec.push_back(std::lower_bound(to_vec.begin(), to_vec.end(), it->first));
+
+		else {
+			std::vector<int>::iterator pos = std::lower_bound(to_vec.begin(), to_vec.end(), it->first);
+			to_vec.insert(pos, it->first);
 		}
-		std::cout << "to vec " << to_vec.back() << std::endl;
-
 	}
-
+	for (unsigned int i = 0; i < to_vec.size(); i++)
+		std::cout << "vec[" << i << "]" << to_vec[i] << std::endl;
 }
 

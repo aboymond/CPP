@@ -3,6 +3,7 @@
 #define PMERGEME_HPP
 
 #include <iostream>
+#include <climits>
 #include <iomanip>
 #include <string>
 #include <cmath>
