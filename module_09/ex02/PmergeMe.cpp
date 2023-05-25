@@ -30,11 +30,11 @@ int PmergeMe::checkInput(int argc, char **argv){
 	for (int i = 1; argv[i]; i++){
 		for (int j = 0; argv[i][j]; j++) {
 			if ((!std::isdigit(argv[i][j]))) {
-				std::cout << "Error: Bad input " << std::endl;
+				std::cout << "Error: Bad input '" << argv[i] << "'" << std::endl;
 				exit(EXIT_FAILURE);
 		}
 		if (std::atol(argv[i]) < 0){
-			std::cout << "Error: Bad input" << std::endl;
+			std::cout << "Error: Bad input '" << argv[i] << "'" << std::endl;
 			exit (EXIT_FAILURE);
 		}
 		else if (std::atol(argv[i]) >= 468366449){

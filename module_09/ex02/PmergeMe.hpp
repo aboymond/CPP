@@ -7,6 +7,7 @@
 #include <cctype>
 #include <iomanip>
 #include <string>
+#include <cstring>
 #include <cmath>
 #include <algorithm>
 #include <vector>
