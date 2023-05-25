@@ -5,7 +5,7 @@ NAME			=		PmergeMe
 
 #***** Sources / Objs *****#
 
-SRC				=		main.cpp
+SRC				=		main.cpp PmergeMe.cpp
 
 OBJS			=		$(SRC:.cpp=.o)
 
