@@ -21,5 +21,9 @@ int main(int argc, char **argv){
 	test.sortPair();
 	test.sortToVector();
 
+	test.intListPair(argc, argv);
+	test.sortListPair();
+	test.sortToList();
+
 }
 
