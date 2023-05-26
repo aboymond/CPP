@@ -3,6 +3,7 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <iostream>
+#include <ctime>
 #include <sstream>
 #include <fstream>
 #include <iomanip>

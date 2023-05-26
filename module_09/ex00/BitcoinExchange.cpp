@@ -84,15 +84,31 @@ void	BitcoinExchange::splitInput(char **argv){
 }
 
 bool	BitcoinExchange::dateCheck(std::string const &key){
-	bool	err = false;
-	std::stringstream date(key);
 	std::tm tmd = {};
-	date >> std::get_time(&tmd, "%Y-%m-%d");
-	if (!date){
+	if (strptime(key.c_str(), "%Y-%m-%d", &tmd) == NULL){
 		std::cerr << "Error: Bad input => " << key << std::endl;
-		err = true;
+		return (true);
 	}
-	return (err);
+	std::stringstream date(key);
+	char tild;
+	if (!(date >> tmd.tm_year >> tild >> tmd.tm_mon >> tild >> tmd.tm_mday)){
+		std::cerr << "Error: Bad input => " << key << std::endl;
+		return (true);
+	}
+	tmd.tm_year -= 2009;
+	tmd.tm_mon -= 1;
+
+	if (mktime(&tmd) == -1){
+		std::cerr << "Error: Bad input => " << key << std::endl;
+		return (true);
+	}
+//	date >> std::get_time(&tmd, "%Y-%m-%d");
+////	std::cout << "DAAAATE = " << date << "   key = " << key << std::endl;
+//	if (!date){
+//		std::cerr << "Error: Bad input => " << key << std::endl;
+//		err = true;
+//	}
+	return (false);
 }
 
 bool	BitcoinExchange::valueCheck(std::string const &val){
