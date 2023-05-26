@@ -25,13 +25,35 @@ void	BitcoinExchange::inputCheck(int argc, char **argv){
 		exit (EXIT_FAILURE);
 	}
 	else{
-		std::string	input = argv[1];
-		if (input != "input.txt"){
+		std::string txt_csv = argv[1];
+		size_t point = txt_csv.find_last_of(".");
+		if (point == std::string::npos){
+			std::cout << "Error: Extension of file" << std::endl;
+			exit(EXIT_FAILURE);
+		}
+		std::string ext = txt_csv.substr(point + 1);
+		if (ext != "txt" && ext != "csv"){
+			std::cout << "Error: Extension of file" << std::endl;
+			exit(EXIT_FAILURE);
+		}
+		std::string	line;
+		std::ifstream input(argv[1]);
+		if (!input.is_open()){
 			std::cerr << "Error: could not open file." << std::endl;
+			input.close();
 			exit (EXIT_FAILURE);
 		}
+		else if (!std::getline(input, line)){
+			if (line.empty()) {
+				std::cerr << "Error line is empty" << std::endl;
+				input.close();
+				exit (EXIT_FAILURE);
+			}
+		}
+
 		else
 			return;
+		input.close();
 	}
 }
 
@@ -56,7 +78,7 @@ void	BitcoinExchange::splitInput(char **argv){
 	std::string line;
 	std::ifstream fd(argv[1]);
 	if (!fd.is_open()){
-		std::cerr << "impossible to open file: "<< argv[1] << std::endl;
+		std::cerr << "Error: impossible to open file: "<< argv[1] << std::endl;
 		fd.close();
 		exit (EXIT_FAILURE);
 	}
