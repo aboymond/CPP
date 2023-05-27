@@ -43,14 +43,11 @@ void	BitcoinExchange::inputCheck(int argc, char **argv){
 			input.close();
 			exit (EXIT_FAILURE);
 		}
-		else if (!std::getline(input, line)){
-			if (line.empty()) {
-				std::cerr << "Error line is empty" << std::endl;
-				input.close();
-				exit (EXIT_FAILURE);
-			}
+		else if (input.peek() == std::ifstream::traits_type::eof()) {
+			std::cerr << "Error: File is empty." << std::endl;
+			input.close();
+			exit(EXIT_FAILURE);
 		}
-
 		else
 			return;
 		input.close();
@@ -89,6 +86,7 @@ void	BitcoinExchange::splitInput(char **argv){
 
 		if (line.empty()) {
 			std::cerr << "Error line is empty" << std::endl;
+			std::getline(fd, line);
 		}
 		std::stringstream key_val(line);
 		std::string key;
@@ -112,20 +110,27 @@ bool	BitcoinExchange::dateCheck(std::string const &key){
 		return (true);
 	}
 	std::stringstream date(key);
+	int year, month, day;
 	char tild;
-	if (!(date >> tmd.tm_year >> tild >> tmd.tm_mon >> tild >> tmd.tm_mday)){
+	if (!(date >> year >> tild >> month >> tild >> day)){
 		std::cerr << "Error: Bad input => " << key << std::endl;
 		return (true);
 	}
-	tmd.tm_year -= 2009;
-	tmd.tm_mon -= 1;
+	tmd.tm_year = year - 1900;
+	tmd.tm_mon = month - 1;
+	tmd.tm_mday = day;
 
-	if (mktime(&tmd) == -1){
+	time_t currentTime = time(NULL);
+	if (mktime(&tmd) > currentTime) {
+		std::cerr << "Error: Bad input => " << key << std::endl;
+		return true;
+	}
+	if (year < 2009 || (year == 2009 && (month < 1 || (month == 1 && day < 2))) || mktime(&tmd) == -1){
 		std::cerr << "Error: Bad input => " << key << std::endl;
 		return (true);
 	}
 //	date >> std::get_time(&tmd, "%Y-%m-%d");
-////	std::cout << "DAAAATE = " << date << "   key = " << key << std::endl;
+//	std::cout << "DAAAATE = " << date << "   key = " << key << std::endl;
 //	if (!date){
 //		std::cerr << "Error: Bad input => " << key << std::endl;
 //		err = true;
