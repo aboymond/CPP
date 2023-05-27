@@ -28,7 +28,9 @@ void	RPN::polishNotation() {
 	if (_input.empty()) {
 		throw std::runtime_error("Error : input is empty.");
 	}
-
+	if (_input.find_first_not_of(" \t\n\v\f\r") == std::string::npos) {
+		throw std::runtime_error("Error: must not contain only spaces.");
+	}
 	int result = 0;
 	std::stack<int> stack_int;
 	for (unsigned int i = 0; i < _input.size(); i++){
