@@ -25,6 +25,10 @@ RPN &RPN::operator=(RPN const &rhs) {
 }
 
 void	RPN::polishNotation() {
+	if (_input.empty()) {
+		throw std::runtime_error("Error : input is empty.");
+	}
+
 	int result = 0;
 	std::stack<int> stack_int;
 	for (unsigned int i = 0; i < _input.size(); i++){
@@ -35,8 +39,7 @@ void	RPN::polishNotation() {
 			int a;
 			int b;
 			if (stack_int.size() < 2){
-				std::cerr << "Error: Minimum 2 integers in the stack " << std::endl;
-				exit(EXIT_FAILURE);
+				throw std::runtime_error("Error: Minimum 2 integers in the stack.");
 			}
 			b = static_cast<int>(stack_int.top());
 			stack_int.pop();
@@ -56,8 +59,7 @@ void	RPN::polishNotation() {
 			}
 			else{
 				if (a == 0 || b == 0) {
-					std::cerr << "Error: Division by zero" << std::endl;
-					exit(EXIT_FAILURE);
+					throw std::runtime_error("Error: Division by zero.");
 				}
 					result = a / b;
 					stack_int.push(result);
@@ -65,16 +67,15 @@ void	RPN::polishNotation() {
 			}
 
 		}
-		else if (_input[i] == ' ' || _input[i] == '\n')
+		else if (_input[i] == ' ' || _input[i] == '\n'){
 			continue;
+		}
 		else{
-			std::cerr << "Error" << std::endl;
-			exit (EXIT_FAILURE);
+			throw std::runtime_error("Error : char invalid.");
 		}
 	}
 	if (stack_int.size() > 1){
-		std::cerr << "Error: there are still several integers in the stack" << std::endl;
-		exit(EXIT_FAILURE);
+		throw std::runtime_error("Error: there are still several integers in the stack.");
 	}
 	std::cout << "result = " << result << std::endl;
 }
