@@ -34,6 +34,7 @@ public:
 	PmergeMe &operator=(PmergeMe const &rhs);
 	~PmergeMe();
 
+	bool isSorted(int argc, char** argv);
 	int checkInput(int argc, char **argv);
 	int intVectorPair(int argc, char **argv);
 	int sortPair();

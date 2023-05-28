@@ -17,6 +17,14 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &rhs) {
 	return (*this);
 }
 
+bool PmergeMe::isSorted(int argc, char** argv) {
+	for (int i = 2; i < argc; i++) {
+		if (std::atoi(argv[i]) < std::atoi(argv[i - 1])) {
+			return false;
+		}
+	}
+	return true;
+}
 
 int PmergeMe::checkInput(int argc, char **argv){
 	if (argc < 2){
@@ -51,6 +59,7 @@ int PmergeMe::checkInput(int argc, char **argv){
 			}
 		}
 	}
+
 	for (int i = 1; argv[i]; i++){
 		_elem_compt++;
 	}
