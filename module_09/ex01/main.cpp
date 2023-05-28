@@ -7,6 +7,14 @@ int main (int argc, char **argv) {
 			std::cerr << "Error: Bad input" << std::endl;
 			return (EXIT_FAILURE);
 		}
+		std::string arg = argv[1];
+		int j = 0;
+		for (int i = 0; argv[1][i]; i++){
+			if (argv[1][i] == ' ')
+				j++;
+		}
+		if (arg.length() - j == 1)
+			throw std::runtime_error("Error: Minimum 2 integers in the stack.");
 		RPN polish(argv[1]);
 		polish.polishNotation();
 	}

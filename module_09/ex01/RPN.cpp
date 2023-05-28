@@ -76,7 +76,7 @@ void	RPN::polishNotation() {
 			throw std::runtime_error("Error : char invalid.");
 		}
 	}
-	if (stack_int.size() > 1){
+	if (stack_int.size() > 1 || stack_int.empty()){
 		throw std::runtime_error("Error: there are still several integers in the stack.");
 	}
 	std::cout << "result = " << result << std::endl;
